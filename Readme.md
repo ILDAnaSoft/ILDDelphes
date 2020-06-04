@@ -1,14 +1,14 @@
 
-## %(repository)s
+## ILDDelphes
 
-%(description)s
+ILD configuration for Delphes software 
 
 ### Installation
 
 Explain here:
 
 - what are the package dependencies (iLCSoft, others ?)
-- how to compile your package. Should normally be something like:
+- how to compile the package. Should normally be something like:
 
 ```shell
 source /path/to/ilcsoft/init_ilcsoft.sh
@@ -18,33 +18,18 @@ cmake -C $ILCSOFT/ILCSoft.cmake ..
 make install
 ```
 
-### How to run the analysis
+### How to run it
 
 Explain here:
 
-- where to find data needed for your analysis or how to produce them
-- how to run you analysis: 
-   - Marlin processors to run ?
-   - ROOT macros to run ?
-   - Shell scripts ?
-   - Run the analysis on grid if you provide scripts for that
-
-Example:
-
-```shell
-export MARLIN_DLL=./lib/lib%(repository)s.so
-Marlin ./scripts/ExampleProcessor.xml
-```
-
-If you want to provide a lot of details on your analysis, use the doc/Readme.md and point to it from this Readme.md file:
-
-More documentation available here in [doc/Readme.md](doc/Readme.md) !
+- where to find data or how to produce it
+- how to run Delphes
 
 ### Issues and contact
 
 Explain here how can people reach you:
 
-- via the Github issue interface. For the skeleton package: https://github.com/ILDAnaSoft/%(repository)s/issues
+- via the Github issue interface. For the skeleton package: https://github.com/ILDAnaSoft/ILDDelphes/issues
 - **not mandatory**:
     - email address
     - working institute
