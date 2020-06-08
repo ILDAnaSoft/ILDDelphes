@@ -1,24 +1,21 @@
 
 ## ILDDelphes
 
-ILD configuration for Delphes software 
+ILD detector model for simulation with Delphes  
+
+
+## Work in progress...
+
+No usable model yet. Please come back in few days...
 
 ### Installation
 
-Explain here:
+No dedicated installation of the model is required.
 
-- what are the package dependencies (iLCSoft, others ?)
-- how to compile the package. Should normally be something like:
-
-```shell
-source /path/to/ilcsoft/init_ilcsoft.sh
-mkdir build
-cd build
-cmake -C $ILCSOFT/ILCSoft.cmake ..
-make install
-```
+You just need to download model files and put them into 'cards' catalog of your Delphes installation.
 
 ### How to run it
+
 
 Explain here:
 
