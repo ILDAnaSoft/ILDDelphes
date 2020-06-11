@@ -1,3 +1,3 @@
-## ROOT macros directory
+## ROOT macros for analysis based on the implemented detector models
 
-Put all your ROOT macros there and describe what they do here !
+We put different ROOT macros here to help you to develope your own analysis
