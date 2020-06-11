@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 # Track momentum resolution dpt/pt 
 #  based on parametrisation of ILD IDR results (Figure 8.1a)
 #  A.F.Zarnecki, June 12, 2020
@@ -19,4 +20,11 @@ set ResolutionFormula {
      + (-0.0800672 + 0.0891669 * abs(eta)) * log(pt)*log(pt))
 
 }
+=======
+  # set ResolutionFormula {resolution formula as a function of eta and pt}
+
+  # resolution formula for muons
+  set ResolutionFormula {    (abs(eta) <= 1.0)                   * sqrt(0.001^2 + pt^2*1.e-5^2) +
+                             (abs(eta) > 1.0 && abs(eta) <= 2.4) * sqrt(0.01^2 + pt^2*1.e-4^2)}
+>>>>>>> Implementing new model, work in progress...
 

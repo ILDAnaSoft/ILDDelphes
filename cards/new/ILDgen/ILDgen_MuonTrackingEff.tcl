@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 # Tracking efficiency as given in the ILD IDR (Figure 8.2)
 #  for high angles (FTD coverage): educated guess
 #  A.F.Zarnecki, June 12, 2020
@@ -17,3 +18,11 @@
                 (abs(eta) > 2.65 && abs(eta) <= 3.00)     *      (pt > 0.3 && pt <= 0.7)   * (0.945) +
                 (abs(eta) > 2.65 && abs(eta) <= 3.00)     *      (pt > 0.7)                * (0.95)  +
                 (abs(eta) > 3.00)                         *      (pt > 0.1)                * (0.00)  }
+=======
+  # set EfficiencyFormula {efficiency formula as a function of eta and pt}
+
+  # tracking efficiency formula for muons
+  set EfficiencyFormula {                                                    (pt <= 0.1)   * (0.00) +
+                                           (abs(eta) <= 2.4)               * (pt > 0.1)    * (0.99) +
+                                           (abs(eta) >  2.4)                               * (0.00)}
+>>>>>>> Implementing new model, work in progress...
