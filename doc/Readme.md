@@ -1,3 +1,4 @@
-## ILD Analysis loooooong documentation
+## ILDDelphes Delphes detector model documentation
 
-If you want to provide a lot of details on your analysis use this file !
+Here we provide additional details on the implemented models
+
