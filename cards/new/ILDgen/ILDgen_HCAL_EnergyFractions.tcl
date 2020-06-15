@@ -18,4 +18,3 @@
   # energy fractions for K0short and Lambda
   add EnergyFraction {310} {0.7}
   add EnergyFraction {3122} {0.7}
-
