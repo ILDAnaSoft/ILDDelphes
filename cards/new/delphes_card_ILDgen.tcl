@@ -29,7 +29,7 @@ set ExecutionPath {
   BeamCal
     
   Calorimeters
-
+    
   EFlowMerger
   EFlowFilter
 
@@ -92,6 +92,8 @@ set ExecutionPath {
   MissingET_MainCal
   ScalarHT_MainCal
 
+    
+    
   TreeWriter
 }
 
@@ -276,7 +278,6 @@ module SimpleCalorimeter LHCal {
     set IsEcal false 
     
     set EnergyMin 1.0
-
     set EnergySignificanceMin 1.0
     
     set SmearTowerCenter true
@@ -311,7 +312,6 @@ module SimpleCalorimeter BeamCal {
     set IsEcal true 
     
     set EnergyMin 2.0
-
     set EnergySignificanceMin 1.0
     
     set SmearTowerCenter true
