@@ -208,8 +208,6 @@ module SimpleCalorimeter HCal {
     
     set SmearTowerCenter true
     
-    set pi [expr {acos(-1)}]
-    
     source ILDgen/ILDgen_HCAL_Binning.tcl
     source ILDgen/ILDgen_HCAL_EnergyFractions.tcl
     source ILDgen/ILDgen_HCAL_Resolution.tcl 
@@ -231,8 +229,6 @@ module SimpleCalorimeter BeamCal {
     set EnergySignificanceMin 1.0
     
     set SmearTowerCenter true
-    
-    set pi [expr {acos(-1)}]
     
     source ILDgen/ILDgen_BeamCal_Binning.tcl
     source ILDgen/ILDgen_BeamCal_EnergyFractions.tcl
@@ -256,8 +252,6 @@ module SimpleCalorimeter LumiCal {
     
     set SmearTowerCenter true
     
-    set pi [expr {acos(-1)}]
-    
     source ILDgen/ILDgen_LumiCal_Binning.tcl
     source ILDgen/ILDgen_ECAL_EnergyFractions.tcl
     source ILDgen/ILDgen_ECAL_Resolution.tcl
@@ -279,8 +273,6 @@ module SimpleCalorimeter LHCal {
     set EnergySignificanceMin 1.0
     
     set SmearTowerCenter true
-    
-    set pi [expr {acos(-1)}]
     
     source ILDgen/ILDgen_LHCal_Binning.tcl
     source ILDgen/ILDgen_HCAL_EnergyFractions.tcl
