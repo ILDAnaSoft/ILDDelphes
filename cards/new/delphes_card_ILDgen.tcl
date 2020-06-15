@@ -185,8 +185,6 @@ module SimpleCalorimeter ECal {
     
     set SmearTowerCenter true
     
-    set pi [expr {acos(-1)}]
-    
     source ILDgen/ILDgen_ECAL_Binning.tcl
     source ILDgen/ILDgen_ECAL_EnergyFractions.tcl
     source ILDgen/ILDgen_ECAL_Resolution.tcl 
