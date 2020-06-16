@@ -61,7 +61,7 @@ set PhiBins {}
     add PhiBins [expr {$i * $pi/5}]
   }
   for {set i 0} {$i <= 4} {incr i} {
-    set eta [expr {-3.0 + $i * 0.3/4.0}]
+    set eta [expr {-2.8 + $i * 0.3/4.0}]
     add EtaPhiBins $eta $PhiBins
   }
   for {set i 0} {$i <= 4} {incr i} {
