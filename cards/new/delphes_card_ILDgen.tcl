@@ -256,7 +256,7 @@ module SimpleCalorimeter LumiCalR {
 #############
 module SimpleCalorimeter HCal {
     set ParticleInputArray ParticlePropagator/stableParticles
-    set TrackInputArray EMTrackMerger/eflowTracks
+    set TrackInputArray ECal/eflowTracks
     
     set TowerOutputArray hcalTowers
     set EFlowTrackOutputArray eflowTracks
@@ -277,29 +277,9 @@ module SimpleCalorimeter HCal {
 ##############
 # LHCal
 ##############
-module SimpleCalorimeter LHCalF {
-    set ParticleInputArray ParticlePropagator/stableParticles
-    set TrackInputArray EMTrackMerger/eflowTracks
-    
-    set TowerOutputArray lhcalTowers
-    set EFlowTrackOutputArray eflowTracks
-    set EFlowTowerOutputArray eflowNeutralHadrons
-    
-    set IsEcal false 
-    
-    set EnergyMin 1.0
-    set EnergySignificanceMin 1.0
-    
-    set SmearTowerCenter true
-    
-    source ILDgen/ILDgen_LHCalF_Binning.tcl
-    source ILDgen/ILDgen_HCAL_EnergyFractions.tcl
-    source ILDgen/ILDgen_HCAL_Resolution.tcl
-}
-
 module SimpleCalorimeter LHCalR {
     set ParticleInputArray ParticlePropagator/stableParticles
-    set TrackInputArray EMTrackMerger/eflowTracks
+    set TrackInputArray ECal/eflowTracks
     
     set TowerOutputArray lhcalTowers
     set EFlowTrackOutputArray eflowTracks
@@ -317,29 +297,29 @@ module SimpleCalorimeter LHCalR {
     source ILDgen/ILDgen_HCAL_Resolution.tcl
 }
 
-
-##############
-# BeamCal
-##############
-module SimpleCalorimeter BeamCalF {
+module SimpleCalorimeter LHCalF {
     set ParticleInputArray ParticlePropagator/stableParticles
-    set TrackInputArray TrackMerger/tracks
+    set TrackInputArray ECal/eflowTracks
     
-    set TowerOutputArray bcalTowers
-    set EFlowTowerOutputArray bcalPhotons
+    set TowerOutputArray lhcalTowers
+    set EFlowTrackOutputArray eflowTracks
+    set EFlowTowerOutputArray eflowNeutralHadrons
     
-    set IsEcal true 
+    set IsEcal false 
     
-    set EnergyMin 2.0
+    set EnergyMin 1.0
     set EnergySignificanceMin 1.0
     
     set SmearTowerCenter true
     
-    source ILDgen/ILDgen_BeamCalF_Binning.tcl
-    source ILDgen/ILDgen_BeamCal_EnergyFractions.tcl
-    source ILDgen/ILDgen_BeamCal_Resolution.tcl
+    source ILDgen/ILDgen_LHCalF_Binning.tcl
+    source ILDgen/ILDgen_HCAL_EnergyFractions.tcl
+    source ILDgen/ILDgen_HCAL_Resolution.tcl
 }
 
+##############
+# BeamCal
+##############
 module SimpleCalorimeter BeamCalR {
     set ParticleInputArray ParticlePropagator/stableParticles
     set TrackInputArray TrackMerger/tracks
@@ -355,6 +335,25 @@ module SimpleCalorimeter BeamCalR {
     set SmearTowerCenter true
     
     source ILDgen/ILDgen_BeamCalR_Binning.tcl
+    source ILDgen/ILDgen_BeamCal_EnergyFractions.tcl
+    source ILDgen/ILDgen_BeamCal_Resolution.tcl
+}
+
+module SimpleCalorimeter BeamCalF {
+    set ParticleInputArray ParticlePropagator/stableParticles
+    set TrackInputArray TrackMerger/tracks
+    
+    set TowerOutputArray bcalTowers
+    set EFlowTowerOutputArray bcalPhotons
+    
+    set IsEcal true 
+    
+    set EnergyMin 2.0
+    set EnergySignificanceMin 1.0
+    
+    set SmearTowerCenter true
+    
+    source ILDgen/ILDgen_BeamCalF_Binning.tcl
     source ILDgen/ILDgen_BeamCal_EnergyFractions.tcl
     source ILDgen/ILDgen_BeamCal_Resolution.tcl
 }

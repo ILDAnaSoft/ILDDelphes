@@ -10,12 +10,6 @@ set pi [expr {acos(-1)}]
     add PhiBins [expr {$i * $pi/24.0}]
   }
   for {set i 0} {$i <= 64} {incr i} {
-    set eta [expr {-4.0 + $i * 1.0/64.0}]
-    add EtaPhiBins $eta $PhiBins
-  }
-
-  #Rear part
-  for {set i 0} {$i <= 64} {incr i} {
     set eta [expr {3.0 + $i * 1.0/64.0}]
     add EtaPhiBins $eta $PhiBins
   }
