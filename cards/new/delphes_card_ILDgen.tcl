@@ -349,6 +349,7 @@ module SimpleCalorimeter BeamCalF {
     set IsEcal true 
     
     set EnergyMin 2.0
+
     set EnergySignificanceMin 1.0
     
     set SmearTowerCenter true
