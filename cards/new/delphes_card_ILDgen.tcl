@@ -17,16 +17,15 @@ set ExecutionPath {
   TrackMerger
   
   ECal
-  LumiCal
+  LumiCalF
+  LumiCalR
 
-  EMTrackMerger
-    
   HCal
-  LHCal
+  LHCalF
+  LHCalR
     
-  HCTrackMerger
-    
-  BeamCal
+  BeamCalF
+  BeamCalR
     
   Calorimeters
     
@@ -35,7 +34,9 @@ set ExecutionPath {
 
   NeutralMerger
   PhotonMerger
-    
+
+  BCalTowers
+  BCalMerger
   BCalEfficiency
    
   PhotonEfficiency
@@ -208,7 +209,7 @@ module SimpleCalorimeter ECal {
 ##############
 # LumiCal
 ##############
-module SimpleCalorimeter LumiCal {
+module SimpleCalorimeter LumiCalF {
     set ParticleInputArray ParticlePropagator/stableParticles
     set TrackInputArray TrackMerger/tracks
     
@@ -224,21 +225,30 @@ module SimpleCalorimeter LumiCal {
     
     set SmearTowerCenter true
     
-    source ILDgen/ILDgen_LumiCal_Binning.tcl
+    source ILDgen/ILDgen_LumiCalF_Binning.tcl
     source ILDgen/ILDgen_ECAL_EnergyFractions.tcl
     source ILDgen/ILDgen_ECAL_Resolution.tcl
 }
 
-#######################################
-# ECAL+LumiCal energy flow track merger
-#    for HCAL and LHCAL input
-#######################################
-
-module Merger EMTrackMerger {
-# add InputArray InputArray
-  add InputArray ECal/eflowTracks
-  add InputArray LumiCal/eflowTracks
-  set OutputArray eflowTracks
+module SimpleCalorimeter LumiCalR {
+    set ParticleInputArray ParticlePropagator/stableParticles
+    set TrackInputArray TrackMerger/tracks
+    
+    set TowerOutputArray lumicalTowers
+    
+    set EFlowTrackOutputArray eflowTracks
+    set EFlowTowerOutputArray eflowPhotons
+    
+    set IsEcal true 
+    
+    set EnergyMin 1.0
+    set EnergySignificanceMin 1.0
+    
+    set SmearTowerCenter true
+    
+    source ILDgen/ILDgen_LumiCalR_Binning.tcl
+    source ILDgen/ILDgen_ECAL_EnergyFractions.tcl
+    source ILDgen/ILDgen_ECAL_Resolution.tcl
 }
 
 #############
@@ -267,7 +277,7 @@ module SimpleCalorimeter HCal {
 ##############
 # LHCal
 ##############
-module SimpleCalorimeter LHCal {
+module SimpleCalorimeter LHCalF {
     set ParticleInputArray ParticlePropagator/stableParticles
     set TrackInputArray EMTrackMerger/eflowTracks
     
@@ -282,27 +292,36 @@ module SimpleCalorimeter LHCal {
     
     set SmearTowerCenter true
     
-    source ILDgen/ILDgen_LHCal_Binning.tcl
+    source ILDgen/ILDgen_LHCalF_Binning.tcl
     source ILDgen/ILDgen_HCAL_EnergyFractions.tcl
     source ILDgen/ILDgen_HCAL_Resolution.tcl
 }
 
-#######################################
-# HCAL+LHCAL energy flow track merger
-#    for particle filters' input
-#######################################
-
-module Merger HCTrackMerger {
-# add InputArray InputArray
-  add InputArray HCal/eflowTracks
-  add InputArray LHCal/eflowTracks
-  set OutputArray eflowTracks
+module SimpleCalorimeter LHCalR {
+    set ParticleInputArray ParticlePropagator/stableParticles
+    set TrackInputArray EMTrackMerger/eflowTracks
+    
+    set TowerOutputArray lhcalTowers
+    set EFlowTrackOutputArray eflowTracks
+    set EFlowTowerOutputArray eflowNeutralHadrons
+    
+    set IsEcal false 
+    
+    set EnergyMin 1.0
+    set EnergySignificanceMin 1.0
+    
+    set SmearTowerCenter true
+    
+    source ILDgen/ILDgen_LHCalR_Binning.tcl
+    source ILDgen/ILDgen_HCAL_EnergyFractions.tcl
+    source ILDgen/ILDgen_HCAL_Resolution.tcl
 }
+
 
 ##############
 # BeamCal
 ##############
-module SimpleCalorimeter BeamCal {
+module SimpleCalorimeter BeamCalF {
     set ParticleInputArray ParticlePropagator/stableParticles
     set TrackInputArray TrackMerger/tracks
     
@@ -316,7 +335,26 @@ module SimpleCalorimeter BeamCal {
     
     set SmearTowerCenter true
     
-    source ILDgen/ILDgen_BeamCal_Binning.tcl
+    source ILDgen/ILDgen_BeamCalF_Binning.tcl
+    source ILDgen/ILDgen_BeamCal_EnergyFractions.tcl
+    source ILDgen/ILDgen_BeamCal_Resolution.tcl
+}
+
+module SimpleCalorimeter BeamCalR {
+    set ParticleInputArray ParticlePropagator/stableParticles
+    set TrackInputArray TrackMerger/tracks
+    
+    set TowerOutputArray bcalTowers
+    set EFlowTowerOutputArray bcalPhotons
+    
+    set IsEcal true 
+    
+    set EnergyMin 2.0
+    set EnergySignificanceMin 1.0
+    
+    set SmearTowerCenter true
+    
+    source ILDgen/ILDgen_BeamCalR_Binning.tcl
     source ILDgen/ILDgen_BeamCal_EnergyFractions.tcl
     source ILDgen/ILDgen_BeamCal_Resolution.tcl
 }
@@ -326,7 +364,7 @@ module SimpleCalorimeter BeamCal {
 #################
 
 module PdgCodeFilter ElectronFilter {
-  set InputArray HCTrackMerger/eflowTracks
+  set InputArray HCal/eflowTracks
   set OutputArray electrons
   set Invert true
 
@@ -339,7 +377,7 @@ module PdgCodeFilter ElectronFilter {
 ######################
 
 module PdgCodeFilter ChargedHadronFilter {
-  set InputArray HCTrackMerger/eflowTracks
+  set InputArray HCal/eflowTracks
   set OutputArray chargedHadrons
   
   add PdgCode {11}
@@ -358,8 +396,10 @@ module Merger Calorimeters {
 # add InputArray InputArray
   add InputArray ECal/ecalTowers
   add InputArray HCal/hcalTowers
-  add InputArray LumiCal/lumicalTowers
-  add InputArray LHCal/lhcalTowers
+  add InputArray LumiCalF/lumicalTowers
+  add InputArray LumiCalR/lumicalTowers
+  add InputArray LHCalF/lhcalTowers
+  add InputArray LHCalR/lhcalTowers
   set OutputArray towers
 }
 
@@ -382,11 +422,12 @@ module Merger MainCalorimeters {
 module Merger EFlowMerger {
 # add InputArray InputArray
   add InputArray HCal/eflowTracks
-  add InputArray LHCal/eflowTracks
   add InputArray ECal/eflowPhotons
-  add InputArray LumiCal/eflowPhotons
+  add InputArray LumiCalF/eflowPhotons
+  add InputArray LumiCalR/eflowPhotons
   add InputArray HCal/eflowNeutralHadrons
-  add InputArray LHCal/eflowNeutralHadrons
+  add InputArray LHCalF/eflowNeutralHadrons
+  add InputArray LHCalR/eflowNeutralHadrons
   set OutputArray eflow
 }
 
@@ -409,7 +450,8 @@ module Merger EFlowMerger_MainCal {
 module Merger PhotonMerger {
 # add InputArray InputArray
   add InputArray ECal/eflowPhotons
-  add InputArray LumiCal/eflowPhotons
+  add InputArray LumiCalF/eflowPhotons
+  add InputArray LumiCalR/eflowPhotons
 
   set OutputArray eflowPhotons
 }
@@ -421,15 +463,38 @@ module Merger PhotonMerger {
 module Merger NeutralMerger {
 # add InputArray InputArray
   add InputArray HCal/eflowNeutralHadrons
-  add InputArray LHCal/eflowNeutralHadrons
+  add InputArray LHCalF/eflowNeutralHadrons
+  add InputArray LHCalR/eflowNeutralHadrons
   set OutputArray eflowNeutralHadrons
 }
 
+###############################
+# BeamCal tower merger
+###############################
+
+module Merger BCalTowers {
+# add InputArray InputArray
+  add InputArray BeamCalF/bcalTowers
+  add InputArray BeamCalR/bcalTowers
+  set OutputArray bcalTowers
+}
+  
+###############################
+# BeamCal energy flow merger
+###############################
+
+module Merger BCalMerger {
+# add InputArray InputArray
+  add InputArray BeamCalF/bcalPhotons
+  add InputArray BeamCalR/bcalPhotons
+  set OutputArray bcalPhotons
+}
+  
 ##############################
 # BeamCal photon efficiency
 ##############################
 module Efficiency BCalEfficiency {
-    set InputArray  BeamCal/bcalPhotons
+    set InputArray  BCalMerger/bcalPhotons
     set OutputArray beamcalPhotons
 
     source ILDgen/ILDgen_BeamCalEfficiency.tcl
@@ -809,7 +874,7 @@ module TreeWriter TreeWriter {
   add Branch MissingET_MainCal/momentum MissingET_MainCal MissingET
   add Branch ScalarHT_MainCal/energy ScalarHT_MainCal ScalarHT
 
-  add Branch BeamCal/bcalTowers BCalTower Tower
+  add Branch BCalTowers/bcalTowers BCalTower Tower
   add Branch BCalEfficiency/beamcalPhotons beamcalPhotons Photon
 
 }
