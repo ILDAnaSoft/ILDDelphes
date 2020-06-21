@@ -839,10 +839,10 @@ module TreeWriter TreeWriter {
   add Branch EFlowFilter/muons Muon Muon
   add Branch EFlowFilter/photons Photon Photon
   
-  add Branch FastJetFinder/jets Jet Jet
+  add Branch JetEnergyScale/jets Jet Jet
 
   add Branch EFlowFilter_MainCal/photons Photon_MainCal Photon
-  add Branch FastJetFinder_MainCal/jets Jet_MainCal Jet
+  add Branch JetEnergyScale_MainCal/jets Jet_MainCal Jet
   
   add Branch MissingET/momentum MissingET MissingET
   add Branch ScalarHT/energy ScalarHT ScalarHT

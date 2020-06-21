@@ -1,4 +1,5 @@
   # misidentification rate (uds)
+  # average efficiency: 0.182
   add EfficiencyFormula {0} {
     ( abs(eta)<0.867 )*( energy<30 )*( 0.179 )+ 
     ( abs(eta)<0.867 )*( 30<=energy && energy<60 )*( 0.139 )+ 
@@ -30,10 +31,10 @@
     ( 2.99<=abs(eta) )*( 60<=energy && energy<100 )*( 0.194 )+ 
     ( 2.99<=abs(eta) )*( 100<=energy && energy<150 )*( 0.163 )+ 
     ( 2.99<=abs(eta) )*( 150<=energy )*( 0.162 )
-    ### average efficiency: 0.182
   }
   
   # misidentification rate (c)
+  # average efficiency: 0.504
   add EfficiencyFormula {4} {
     ( abs(eta)<0.867 )*( energy<30 )*( 0.619 )+ 
     ( abs(eta)<0.867 )*( 30<=energy && energy<60 )*( 0.639 )+ 
@@ -65,10 +66,10 @@
     ( 2.99<=abs(eta) )*( 60<=energy && energy<100 )*( 0.271 )+ 
     ( 2.99<=abs(eta) )*( 100<=energy && energy<150 )*( 0.227 )+ 
     ( 2.99<=abs(eta) )*( 150<=energy )*( 0.257 )
-    ### average efficiency: 0.504
   }
   
   # b-tagging efficiency
+  # average efficiency: 0.801
   add EfficiencyFormula {5} {
     ( abs(eta)<0.867 )*( energy<30 )*( 0.908 )+ 
     ( abs(eta)<0.867 )*( 30<=energy && energy<60 )*( 0.948 )+ 
@@ -100,5 +101,4 @@
     ( 2.99<=abs(eta) )*( 60<=energy && energy<100 )*( 0.472 )+ 
     ( 2.99<=abs(eta) )*( 100<=energy && energy<150 )*( 0.5 )+ 
     ( 2.99<=abs(eta) )*( 150<=energy )*( 0.488 )
-    ### average efficiency: 0.801
   }
