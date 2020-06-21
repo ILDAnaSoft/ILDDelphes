@@ -4,6 +4,9 @@
 #######################################
 
 set ExecutionPath {
+
+  NeutrinoFilter
+
   ParticlePropagator
 
   ChargedHadronTrackingEfficiency
@@ -15,7 +18,9 @@ set ExecutionPath {
   MuonMomentumSmearing
 
   TrackMerger
-  
+
+
+    
   ECal
   LumiCalF
   LumiCalR
@@ -24,34 +29,37 @@ set ExecutionPath {
   LHCalF
   LHCalR
     
+  Calorimeters
+
+  
+  
   BeamCalF
   BeamCalR
-    
-  Calorimeters
-    
-  EFlowMerger
-  EFlowFilter
-
-  NeutralMerger
-  PhotonMerger
 
   BCalTowers
   BCalMerger
   BCalEfficiency
    
+    
+  ElectronFilter
+  ChargedHadronFilter
+
+    
+  EFlowMerger
+  PhotonMerger
+  NeutralMerger
+
   PhotonEfficiency
   PhotonIsolation
     
-  ElectronFilter
   ElectronEfficiency
   ElectronIsolation
-
-  ChargedHadronFilter
 
   MuonEfficiency
   MuonIsolation
 
-  NeutrinoFilter
+  
+  EFlowFilter
 
   GenJetFinder
 
@@ -62,7 +70,6 @@ set ExecutionPath {
   BTagging
   TauTagging
     
-  UniqueObjectFinder
 
   MissingET
   GenMissingET
@@ -73,10 +80,11 @@ set ExecutionPath {
   MainCalorimeters
 
   EFlowMerger_MainCal
-  EFlowFilter_MainCal
 
   PhotonEfficiency_MainCal
   PhotonIsolation_MainCal
+
+  EFlowFilter_MainCal
 
   FastJetFinder_MainCal
 
@@ -87,8 +95,6 @@ set ExecutionPath {
   BTagging_MainCal
   
   TauTagging_MainCal
-
-  UniqueObjectFinder_MainCal
 
   MissingET_MainCal
   ScalarHT_MainCal
@@ -495,38 +501,32 @@ module Merger BCalMerger {
 ##############################
 module Efficiency BCalEfficiency {
     set InputArray  BCalMerger/bcalPhotons
-    set OutputArray beamcalPhotons
+    set OutputArray bcalPhotons
 
     source ILDgen/ILDgen_BeamCalEfficiency.tcl
 }
 
 
-######################
-# EFlowFilter
-######################
-
-module PdgCodeFilter EFlowFilter {
-  set InputArray EFlowMerger/eflow
-  set OutputArray eflow
-  
-  add PdgCode {11}
-  add PdgCode {-11}
-  add PdgCode {13}
-  add PdgCode {-13}
+##################################
+# EFlowFilter (UniqueObjectFinder)
+##################################
+module UniqueObjectFinder EFlowFilter {
+    add InputArray PhotonIsolation/photons photons
+    add InputArray ElectronIsolation/electrons electrons
+    add InputArray MuonIsolation/muons muons
+    add InputArray EFlowMerger/eflow eflow
 }
+
 
 ######################################
 # EFlowFilter for central calorimeters
 ######################################
 
-module PdgCodeFilter EFlowFilter_MainCal {
-  set InputArray EFlowMerger_MainCal/eflow
-  set OutputArray eflow
-  
-  add PdgCode {11}
-  add PdgCode {-11}
-  add PdgCode {13}
-  add PdgCode {-13}
+module UniqueObjectFinder EFlowFilter_MainCal {
+    add InputArray PhotonIsolation_MainCal/photons photons
+    add InputArray ElectronIsolation/electrons electrons
+    add InputArray MuonIsolation/muons muons
+    add InputArray EFlowMerger_MainCal/eflow eflow
 }
 
 
@@ -612,7 +612,7 @@ module Merger GenMissingET {
 ############
 module FastJetFinder FastJetFinder {
     #set InputArray TowerMerger/towers
-    set InputArray EFlowMerger/eflow
+    set InputArray EFlowFilter/eflow
     set OutputArray jets
     
     source ILDgen/ILDgen_JetFinder.tcl
@@ -624,7 +624,7 @@ module FastJetFinder FastJetFinder {
 
 module FastJetFinder FastJetFinder_MainCal {
     #set InputArray TowerMerger/towers
-    set InputArray EFlowMerger_MainCal/eflow
+    set InputArray EFlowFilter_MainCal/eflow
     set OutputArray jets
     
     source ILDgen/ILDgen_JetFinder.tcl
@@ -811,32 +811,6 @@ module TauTagging TauTagging_MainCal {
 }
 
 
-#####################################################
-# Find uniquely identified photons/electrons/tau/jets
-#####################################################
-
-module UniqueObjectFinder UniqueObjectFinder {
-# earlier arrays take precedence over later ones
-# add InputArray InputArray OutputArray
-    add InputArray ElectronIsolation/electrons electrons
-    add InputArray MuonIsolation/muons muons
-    add InputArray PhotonIsolation/photons photons
-    add InputArray JetEnergyScale/jets jets
-}
-
-
-#####################################################
-# Find uniquely identified object in central detector
-#####################################################
-
-module UniqueObjectFinder UniqueObjectFinder_MainCal {
-# earlier arrays take precedence over later ones
-# add InputArray InputArray OutputArray
-    add InputArray ElectronIsolation/electrons electrons
-    add InputArray MuonIsolation/muons muons
-    add InputArray PhotonIsolation_MainCal/photons photons_MainCal
-    add InputArray JetEnergyScale_MainCal/jets jets_MainCal
-}
 
 
 ##################
@@ -861,13 +835,14 @@ module TreeWriter TreeWriter {
   add Branch PhotonMerger/eflowPhotons EFlowPhoton Tower
   add Branch NeutralMerger/eflowNeutralHadrons EFlowNeutralHadron Tower
 
-  add Branch UniqueObjectFinder/electrons Electron Electron
-  add Branch UniqueObjectFinder/muons Muon Muon
-  add Branch UniqueObjectFinder/photons Photon Photon
-  add Branch UniqueObjectFinder/jets Jet Jet
+  add Branch EFlowFilter/electrons Electron Electron
+  add Branch EFlowFilter/muons Muon Muon
+  add Branch EFlowFilter/photons Photon Photon
+  
+  add Branch FastJetFinder/jets Jet Jet
 
-  add Branch UniqueObjectFinder_MainCal/photons_MainCal Photon_MainCal Photon
-  add Branch UniqueObjectFinder_MainCal/jets_MainCal Jet_MainCal Jet
+  add Branch EFlowFilter_MainCal/photons Photon_MainCal Photon
+  add Branch FastJetFinder_MainCal/jets Jet_MainCal Jet
   
   add Branch MissingET/momentum MissingET MissingET
   add Branch ScalarHT/energy ScalarHT ScalarHT
@@ -875,7 +850,7 @@ module TreeWriter TreeWriter {
   add Branch ScalarHT_MainCal/energy ScalarHT_MainCal ScalarHT
 
   add Branch BCalTowers/bcalTowers BCalTower Tower
-  add Branch BCalEfficiency/beamcalPhotons beamcalPhotons Photon
+  add Branch BCalEfficiency/bcalPhotons BCalPhoton Photon
 
 }
 
