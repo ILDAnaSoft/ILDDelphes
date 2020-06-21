@@ -65,7 +65,9 @@ set ExecutionPath {
 
   JetFinder
   JetFlavorAssociation
-  BTagging
+  BTagging80
+  BTagging70
+  BTagging50
   TauTagging
     
 
@@ -86,7 +88,9 @@ set ExecutionPath {
 
   JetFinder_MainCal
   JetFlavorAssociation_MainCal
-  BTagging_MainCal
+  BTagging80_MainCal
+  BTagging70_MainCal
+  BTagging50_MainCal
   TauTagging_MainCal
 
   MissingET_MainCal
@@ -673,11 +677,23 @@ module JetFlavorAssociation JetFlavorAssociation {
 ###########
 # b-tagging
 ###########
-module BTagging BTagging {
+module BTagging BTagging80 {
     set JetInputArray JetFinder/jets
     set BitNumber 0
 
     source ILDgen/ILDgen_BTagging_80.tcl
+}
+module BTagging BTagging70 {
+    set JetInputArray JetFinder/jets
+    set BitNumber 1
+
+    source ILDgen/ILDgen_BTagging_70.tcl
+}
+module BTagging BTagging50 {
+    set JetInputArray JetFinder/jets
+    set BitNumber 2
+
+    source ILDgen/ILDgen_BTagging_50.tcl
 }
 
 #############
@@ -750,11 +766,23 @@ module JetFlavorAssociation JetFlavorAssociation_MainCal {
 ############################
 # b-tagging for central jets
 ############################
-module BTagging BTagging_MainCal {
+module BTagging BTagging80_MainCal {
     set JetInputArray JetFinder_MainCal/jets
     set BitNumber 0
 
     source ILDgen/ILDgen_BTagging_80.tcl
+}
+module BTagging BTagging70_MainCal {
+    set JetInputArray JetFinder_MainCal/jets
+    set BitNumber 1
+
+    source ILDgen/ILDgen_BTagging_70.tcl
+}
+module BTagging BTagging50_MainCal {
+    set JetInputArray JetFinder_MainCal/jets
+    set BitNumber 2
+
+    source ILDgen/ILDgen_BTagging_50.tcl
 }
 
 ##########################
