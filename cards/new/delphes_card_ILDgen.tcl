@@ -63,9 +63,7 @@ set ExecutionPath {
 
   GenJetFinder
 
-  FastJetFinder
-  JetEnergyScale
-
+  JetFinder
   JetFlavorAssociation
   BTagging
   TauTagging
@@ -86,14 +84,9 @@ set ExecutionPath {
 
   EFlowFilter_MainCal
 
-  FastJetFinder_MainCal
-
-  JetEnergyScale_MainCal
-
+  JetFinder_MainCal
   JetFlavorAssociation_MainCal
-
   BTagging_MainCal
-  
   TauTagging_MainCal
 
   MissingET_MainCal
@@ -506,181 +499,6 @@ module Efficiency BCalEfficiency {
     source ILDgen/ILDgen_BeamCalEfficiency.tcl
 }
 
-
-##################################
-# EFlowFilter (UniqueObjectFinder)
-##################################
-module UniqueObjectFinder EFlowFilter {
-    add InputArray PhotonIsolation/photons photons
-    add InputArray ElectronIsolation/electrons electrons
-    add InputArray MuonIsolation/muons muons
-    add InputArray EFlowMerger/eflow eflow
-}
-
-
-######################################
-# EFlowFilter for central calorimeters
-######################################
-
-module UniqueObjectFinder EFlowFilter_MainCal {
-    add InputArray PhotonIsolation_MainCal/photons photons
-    add InputArray ElectronIsolation/electrons electrons
-    add InputArray MuonIsolation/muons muons
-    add InputArray EFlowMerger_MainCal/eflow eflow
-}
-
-
-###################
-# Missing ET merger
-###################
-
-module Merger MissingET {
-  add InputArray EFlowMerger/eflow
-  set MomentumOutputArray momentum
-}
-
-module Merger MissingET_MainCal {
-  add InputArray EFlowMerger_MainCal/eflow
-  set MomentumOutputArray momentum
-}
-
-
-##################
-# Scalar HT merger
-##################
-
-module Merger ScalarHT {
-  add InputArray EFlowMerger/eflow
-  set EnergyOutputArray energy
-}
-module Merger ScalarHT_MainCal {
-  add InputArray EFlowMerger_MainCal/eflow
-  set EnergyOutputArray energy
-}
-
-#################
-# Neutrino Filter
-#################
-
-module PdgCodeFilter NeutrinoFilter {
-
-  set InputArray Delphes/stableParticles
-  set OutputArray filteredParticles
-
-  set PTMin 0.0
-
-  add PdgCode {12}
-  add PdgCode {14}
-  add PdgCode {16}
-  add PdgCode {-12}
-  add PdgCode {-14}
-  add PdgCode {-16}
-
-}
-
-
-#####################
-# MC truth jet finder
-#####################
-
-module FastJetFinder GenJetFinder {
-  set InputArray NeutrinoFilter/filteredParticles
-
-  set OutputArray jets
-
-  # algorithm: 1 CDFJetClu, 2 MidPoint, 3 SIScone, 4 kt, 5 Cambridge/Aachen, 6 antikt
-  set JetAlgorithm 6
-  set ParameterR 0.5
-
-  set JetPTMin 20.0
-}
-
-#########################
-# Gen Missing ET merger
-########################
-
-module Merger GenMissingET {
-# add InputArray InputArray
-  add InputArray NeutrinoFilter/filteredParticles
-  set MomentumOutputArray momentum
-}
-
-
-
-############
-# Jet finder
-############
-module FastJetFinder FastJetFinder {
-    #set InputArray TowerMerger/towers
-    set InputArray EFlowFilter/eflow
-    set OutputArray jets
-    
-    source ILDgen/ILDgen_JetFinder.tcl
-}
-
-#######################################
-# Jet finder for central detectors only
-#######################################
-
-module FastJetFinder FastJetFinder_MainCal {
-    #set InputArray TowerMerger/towers
-    set InputArray EFlowFilter_MainCal/eflow
-    set OutputArray jets
-    
-    source ILDgen/ILDgen_JetFinder.tcl
-}
-
-##################
-# Jet Energy Scale
-##################
-
-module EnergyScale JetEnergyScale {
-  set InputArray FastJetFinder/jets
-  set OutputArray jets
-
- # scale formula for jets
-  set ScaleFormula {1.00}
-}
-
-############################################
-# Jet Energy Scale for central detector jets
-############################################
-
-module EnergyScale JetEnergyScale_MainCal {
-  set InputArray FastJetFinder_MainCal/jets
-  set OutputArray jets
-
- # scale formula for jets
-  set ScaleFormula {1.00}
-}
-
-
-########################
-# Jet Flavor Association
-########################
-module JetFlavorAssociation JetFlavorAssociation {
-
-    set PartonInputArray Delphes/partons
-    set ParticleInputArray Delphes/allParticles
-    set ParticleLHEFInputArray Delphes/allParticlesLHEF
-    set JetInputArray JetEnergyScale/jets
-
-    source ILDgen/ILDgen_JetFlavourAssoc.tcl
-}
-
-#########################################
-# Jet Flavor Association for central jets
-#########################################
-module JetFlavorAssociation JetFlavorAssociation_MainCal {
-
-    set PartonInputArray Delphes/partons
-    set ParticleInputArray Delphes/allParticles
-    set ParticleLHEFInputArray Delphes/allParticlesLHEF
-    set JetInputArray JetEnergyScale_MainCal/jets
-
-    source ILDgen/ILDgen_JetFlavourAssoc.tcl
-}
-
 ###################
 # Photon efficiency
 ###################
@@ -697,28 +515,6 @@ module Efficiency PhotonEfficiency {
 module Isolation PhotonIsolation {
     set CandidateInputArray PhotonEfficiency/photons
     set IsolationInputArray EFlowMerger/eflow
-    set OutputArray photons
-
-    source ILDgen/ILDgen_PhotonIsolation.tcl
-}
-
-####################################
-# Photon efficiency central detector
-####################################
-module Efficiency PhotonEfficiency_MainCal {
-    set InputArray ECal/eflowPhotons
-    set OutputArray photons
-
-    source ILDgen/ILDgen_PhotonEfficiency.tcl
-}
-
-####################################
-# Photon isolation central detectors
-####################################
-
-module Isolation PhotonIsolation_MainCal {
-    set CandidateInputArray PhotonEfficiency_MainCal/photons
-    set IsolationInputArray EFlowMerger_MainCal/eflow
     set OutputArray photons
 
     source ILDgen/ILDgen_PhotonIsolation.tcl
@@ -766,23 +562,119 @@ module Isolation MuonIsolation {
     source ILDgen/ILDgen_MuonIsolation.tcl
 }
 
+##################################
+# EFlowFilter (UniqueObjectFinder)
+##################################
+module UniqueObjectFinder EFlowFilter {
+    add InputArray PhotonIsolation/photons photons
+    add InputArray ElectronIsolation/electrons electrons
+    add InputArray MuonIsolation/muons muons
+    add InputArray EFlowMerger/eflow eflow
+}
+
+###################
+# Missing ET merger
+###################
+module Merger MissingET {
+  add InputArray EFlowMerger/eflow
+  set MomentumOutputArray momentum
+}
+module Merger MissingET_MainCal {
+  add InputArray EFlowMerger_MainCal/eflow
+  set MomentumOutputArray momentum
+}
+
+
+##################
+# Scalar HT merger
+##################
+module Merger ScalarHT {
+  add InputArray EFlowMerger/eflow
+  set EnergyOutputArray energy
+}
+module Merger ScalarHT_MainCal {
+  add InputArray EFlowMerger_MainCal/eflow
+  set EnergyOutputArray energy
+}
+
+#################
+# Neutrino Filter
+#################
+module PdgCodeFilter NeutrinoFilter {
+
+  set InputArray Delphes/stableParticles
+  set OutputArray filteredParticles
+
+  set PTMin 0.0
+
+  add PdgCode {12}
+  add PdgCode {14}
+  add PdgCode {16}
+  add PdgCode {-12}
+  add PdgCode {-14}
+  add PdgCode {-16}
+
+}
+
+
+#####################
+# MC truth jet finder
+#####################
+module FastJetFinder GenJetFinder {
+  set InputArray NeutrinoFilter/filteredParticles
+
+  set OutputArray jets
+
+# VLC plugin used with ~Durham settings (beta=1,gamma=0) 
+    
+  set JetAlgorithm 9
+  set ExclusiveClustering false
+  set ParameterR 1.0
+  set Beta 1.0
+  set Gamma 0.0
+  set JetPTMin 0.0
+
+}
+
+#########################
+# Gen Missing ET merger
+########################
+module Merger GenMissingET {
+# add InputArray InputArray
+  add InputArray NeutrinoFilter/filteredParticles
+  set MomentumOutputArray momentum
+}
+
+
+############
+# Jet finder
+############
+module FastJetFinder JetFinder {
+    #set InputArray TowerMerger/towers
+    set InputArray EFlowFilter/eflow
+    set OutputArray jets
+    
+    source ILDgen/ILDgen_JetFinder.tcl
+}
+
+########################
+# Jet Flavor Association
+########################
+module JetFlavorAssociation JetFlavorAssociation {
+
+    set PartonInputArray Delphes/partons
+    set ParticleInputArray Delphes/allParticles
+    set ParticleLHEFInputArray Delphes/allParticlesLHEF
+    set JetInputArray JetFinder/jets
+
+    source ILDgen/ILDgen_JetFlavourAssoc.tcl
+}
 
 ###########
 # b-tagging
 ###########
 module BTagging BTagging {
-    set JetInputArray JetEnergyScale/jets
-    set BitNumber 0
-
-    source ILDgen/ILDgen_BTagging_80.tcl
-}
-
-
-############################
-# b-tagging for central jets
-############################
-module BTagging BTagging_MainCal {
-    set JetInputArray JetEnergyScale_MainCal/jets
+    set JetInputArray JetFinder/jets
     set BitNumber 0
 
     source ILDgen/ILDgen_BTagging_80.tcl
@@ -794,9 +686,75 @@ module BTagging BTagging_MainCal {
 module TauTagging TauTagging {
     set ParticleInputArray Delphes/allParticles
     set PartonInputArray Delphes/partons
-    set JetInputArray JetEnergyScale/jets
+    set JetInputArray JetFinder/jets
 
     source ILDgen/ILDgen_TauTagging.tcl
+}
+
+
+####################################
+# Photon efficiency central detector
+####################################
+module Efficiency PhotonEfficiency_MainCal {
+    set InputArray ECal/eflowPhotons
+    set OutputArray photons
+
+    source ILDgen/ILDgen_PhotonEfficiency.tcl
+}
+
+####################################
+# Photon isolation central detectors
+####################################
+module Isolation PhotonIsolation_MainCal {
+    set CandidateInputArray PhotonEfficiency_MainCal/photons
+    set IsolationInputArray EFlowMerger_MainCal/eflow
+    set OutputArray photons
+
+    source ILDgen/ILDgen_PhotonIsolation.tcl
+}
+
+######################################
+# EFlowFilter for central calorimeters
+######################################
+module UniqueObjectFinder EFlowFilter_MainCal {
+    add InputArray PhotonIsolation_MainCal/photons photons
+    add InputArray ElectronIsolation/electrons electrons
+    add InputArray MuonIsolation/muons muons
+    add InputArray EFlowMerger_MainCal/eflow eflow
+}
+
+#######################################
+# Jet finder for central detectors only
+#######################################
+module FastJetFinder JetFinder_MainCal {
+    #set InputArray TowerMerger/towers
+    set InputArray EFlowFilter_MainCal/eflow
+    set OutputArray jets
+    
+    source ILDgen/ILDgen_JetFinder.tcl
+}
+
+#########################################
+# Jet Flavor Association for central jets
+#########################################
+module JetFlavorAssociation JetFlavorAssociation_MainCal {
+
+    set PartonInputArray Delphes/partons
+    set ParticleInputArray Delphes/allParticles
+    set ParticleLHEFInputArray Delphes/allParticlesLHEF
+    set JetInputArray JetFinder_MainCal/jets
+
+    source ILDgen/ILDgen_JetFlavourAssoc.tcl
+}
+
+############################
+# b-tagging for central jets
+############################
+module BTagging BTagging_MainCal {
+    set JetInputArray JetFinder_MainCal/jets
+    set BitNumber 0
+
+    source ILDgen/ILDgen_BTagging_80.tcl
 }
 
 ##########################
@@ -805,7 +763,7 @@ module TauTagging TauTagging {
 module TauTagging TauTagging_MainCal {
     set ParticleInputArray Delphes/allParticles
     set PartonInputArray Delphes/partons
-    set JetInputArray JetEnergyScale_MainCal/jets
+    set JetInputArray JetFinder_MainCal/jets
 
     source ILDgen/ILDgen_TauTagging.tcl
 }
@@ -839,10 +797,10 @@ module TreeWriter TreeWriter {
   add Branch EFlowFilter/muons Muon Muon
   add Branch EFlowFilter/photons Photon Photon
   
-  add Branch JetEnergyScale/jets Jet Jet
+  add Branch JetFinder/jets Jet Jet
 
   add Branch EFlowFilter_MainCal/photons Photon_MainCal Photon
-  add Branch JetEnergyScale_MainCal/jets Jet_MainCal Jet
+  add Branch JetFinder_MainCal/jets Jet_MainCal Jet
   
   add Branch MissingET/momentum MissingET MissingET
   add Branch ScalarHT/energy ScalarHT ScalarHT
