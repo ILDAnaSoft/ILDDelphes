@@ -4,6 +4,7 @@
   # efficiency formula for photons (ECAL + LumiCal)
 
   set EfficiencyFormula {
-     (energy > 0.5 ) * (abs(eta) <= 3.0)                   * (0.95) +
-     (energy > 1.0 ) * (abs(eta) > 3.0 && abs(eta) <= 4.0) * (0.90)
+        (energy <= 2 )                                      * (0.00) +
+        (energy > 2 ) * (abs(eta) <= 3.0)                   * (0.95) +
+        (energy > 2 ) * (abs(eta) > 3.0 && abs(eta) <= 4.0) * (0.90)
   }

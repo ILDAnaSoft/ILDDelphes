@@ -4,4 +4,7 @@
 # efficiency formula for muons
 # Identification based on tracking only
 
-set EfficiencyFormula { 0.95 }
+  set EfficiencyFormula {
+        (energy <= 2 ) * (0.00) +
+        (energy > 2 )  * (0.95)
+  }
