@@ -3,4 +3,4 @@
 
   set PartonPTMin 1.0
 
-  set PartonEtaMax 3.0
+  set PartonEtaMax 4.0
