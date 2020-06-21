@@ -1,73 +1,104 @@
-  # Test b-tagging configuration
-
   # misidentification rate (uds)
   add EfficiencyFormula {0} {
-    ( abs(tanh(eta))<0.7 )*( energy<30 )*( 0.0357394 )+ \
-    ( abs(tanh(eta))<0.7 )*( 30<=energy && energy<60 )*( 0.00649829 )+ \
-    ( abs(tanh(eta))<0.7 )*( 60<=energy && energy<100 )*( 0.00348779 )+ \
-    ( abs(tanh(eta))<0.7 )*( 100<=energy && energy<150 )*( 0.00210418 )+ \
-    ( abs(tanh(eta))<0.7 )*( 150<=energy )*( 0.00254973 )+ \
-    ( 0.7<=abs(tanh(eta)) && abs(tanh(eta))<0.9 )*( energy<30 )*( 0.111225 )+ \
-    ( 0.7<=abs(tanh(eta)) && abs(tanh(eta))<0.9 )*( 30<=energy && energy<60 )*( 0.0168131 )+ \
-    ( 0.7<=abs(tanh(eta)) && abs(tanh(eta))<0.9 )*( 60<=energy && energy<100 )*( 0.00646659 )+ \
-    ( 0.7<=abs(tanh(eta)) && abs(tanh(eta))<0.9 )*( 100<=energy && energy<150 )*( 0.00331302 )+ \
-    ( 0.7<=abs(tanh(eta)) && abs(tanh(eta))<0.9 )*( 150<=energy )*( 0.00243346 )+ \
-    ( 0.9<=abs(tanh(eta)) && abs(tanh(eta))<0.95 )*( energy<30 )*( 0.272537 )+ \
-    ( 0.9<=abs(tanh(eta)) && abs(tanh(eta))<0.95 )*( 30<=energy && energy<60 )*( 0.0408349 )+ \
-    ( 0.9<=abs(tanh(eta)) && abs(tanh(eta))<0.95 )*( 60<=energy && energy<100 )*( 0.0134139 )+ \
-    ( 0.9<=abs(tanh(eta)) && abs(tanh(eta))<0.95 )*( 100<=energy && energy<150 )*( 0.00643634 )+ \
-    ( 0.9<=abs(tanh(eta)) && abs(tanh(eta))<0.95 )*( 150<=energy )*( 0.0029458 )+ \
-    ( 0.95<=abs(tanh(eta)) && abs(tanh(eta))<0.98 )*( energy<30 )*( 0.354286 )+ \
-    ( 0.95<=abs(tanh(eta)) && abs(tanh(eta))<0.98 )*( 30<=energy && energy<60 )*( 0.163744 )+ \
-    ( 0.95<=abs(tanh(eta)) && abs(tanh(eta))<0.98 )*( 60<=energy && energy<100 )*( 0.0477407 )+ \
-    ( 0.95<=abs(tanh(eta)) && abs(tanh(eta))<0.98 )*( 100<=energy && energy<150 )*( 0.0262949 )+ \
-    ( 0.95<=abs(tanh(eta)) && abs(tanh(eta))<0.98 )*( 150<=energy )*( 0.01424 )+ \
-    ( 0.98<=abs(tanh(eta)) && abs(tanh(eta))<0.995 )*( energy<30 )*( 0.604573 )+ \
-    ( 0.98<=abs(tanh(eta)) && abs(tanh(eta))<0.995 )*( 30<=energy && energy<60 )*( 0.384993 )+ \
-    ( 0.98<=abs(tanh(eta)) && abs(tanh(eta))<0.995 )*( 60<=energy && energy<100 )*( 0.232971 )+ \
-    ( 0.98<=abs(tanh(eta)) && abs(tanh(eta))<0.995 )*( 100<=energy && energy<150 )*( 0.131915 )+ \
-    ( 0.98<=abs(tanh(eta)) && abs(tanh(eta))<0.995 )*( 150<=energy )*( 0.122438 )+ \
-    ( 0.995<=abs(tanh(eta)) )*( energy<30 )*( 0.758615 )+ \
-    ( 0.995<=abs(tanh(eta)) )*( 30<=energy && energy<60 )*( 0.661271 )+ \
-    ( 0.995<=abs(tanh(eta)) )*( 60<=energy && energy<100 )*( 0.55199 )+ \
-    ( 0.995<=abs(tanh(eta)) )*( 100<=energy && energy<150 )*( 0.531619 )+ \
-    ( 0.995<=abs(tanh(eta)) )*( 150<=energy )*( 0.471657 )
+    ( abs(eta)<0.867 )*( energy<30 )*( 0.179 )+ 
+    ( abs(eta)<0.867 )*( 30<=energy && energy<60 )*( 0.139 )+ 
+    ( abs(eta)<0.867 )*( 60<=energy && energy<100 )*( 0.136 )+ 
+    ( abs(eta)<0.867 )*( 100<=energy && energy<150 )*( 0.14 )+ 
+    ( abs(eta)<0.867 )*( 150<=energy )*( 0.155 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( energy<30 )*( 0.211 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( 30<=energy && energy<60 )*( 0.157 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( 60<=energy && energy<100 )*( 0.145 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( 100<=energy && energy<150 )*( 0.151 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( 150<=energy )*( 0.168 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( energy<30 )*( 0.225 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( 30<=energy && energy<60 )*( 0.168 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( 60<=energy && energy<100 )*( 0.156 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( 100<=energy && energy<150 )*( 0.158 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( 150<=energy )*( 0.173 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( energy<30 )*( 0.253 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( 30<=energy && energy<60 )*( 0.175 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( 60<=energy && energy<100 )*( 0.155 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( 100<=energy && energy<150 )*( 0.159 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( 150<=energy )*( 0.168 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( energy<30 )*( 0.337 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( 30<=energy && energy<60 )*( 0.192 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( 60<=energy && energy<100 )*( 0.146 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( 100<=energy && energy<150 )*( 0.131 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( 150<=energy )*( 0.139 )+ 
+    ( 2.99<=abs(eta) )*( energy<30 )*( 0.349 )+ 
+    ( 2.99<=abs(eta) )*( 30<=energy && energy<60 )*( 0.273 )+ 
+    ( 2.99<=abs(eta) )*( 60<=energy && energy<100 )*( 0.194 )+ 
+    ( 2.99<=abs(eta) )*( 100<=energy && energy<150 )*( 0.163 )+ 
+    ( 2.99<=abs(eta) )*( 150<=energy )*( 0.162 )
+    ### average efficiency: 0.182
   }
   
   # misidentification rate (c)
   add EfficiencyFormula {4} {
-    ( abs(tanh(eta))<0.7 )*( energy<30 )*( 0.238583 )+ \
-    ( abs(tanh(eta))<0.7 )*( 30<=energy && energy<60 )*( 0.0676611 )+ \
-    ( abs(tanh(eta))<0.7 )*( 60<=energy && energy<100 )*( 0.0400979 )+ \
-    ( abs(tanh(eta))<0.7 )*( 100<=energy && energy<150 )*( 0.0207426 )+ \
-    ( abs(tanh(eta))<0.7 )*( 150<=energy )*( 0.024863 )+ \
-    ( 0.7<=abs(tanh(eta)) && abs(tanh(eta))<0.9 )*( energy<30 )*( 0.423413 )+ \
-    ( 0.7<=abs(tanh(eta)) && abs(tanh(eta))<0.9 )*( 30<=energy && energy<60 )*( 0.146848 )+ \
-    ( 0.7<=abs(tanh(eta)) && abs(tanh(eta))<0.9 )*( 60<=energy && energy<100 )*( 0.0707474 )+ \
-    ( 0.7<=abs(tanh(eta)) && abs(tanh(eta))<0.9 )*( 100<=energy && energy<150 )*( 0.0379644 )+ \
-    ( 0.7<=abs(tanh(eta)) && abs(tanh(eta))<0.9 )*( 150<=energy )*( 0.0257094 )+ \
-    ( 0.9<=abs(tanh(eta)) && abs(tanh(eta))<0.95 )*( energy<30 )*( 0.516319 )+ \
-    ( 0.9<=abs(tanh(eta)) && abs(tanh(eta))<0.95 )*( 30<=energy && energy<60 )*( 0.273657 )+ \
-    ( 0.9<=abs(tanh(eta)) && abs(tanh(eta))<0.95 )*( 60<=energy && energy<100 )*( 0.1352 )+ \
-    ( 0.9<=abs(tanh(eta)) && abs(tanh(eta))<0.95 )*( 100<=energy && energy<150 )*( 0.0751616 )+ \
-    ( 0.9<=abs(tanh(eta)) && abs(tanh(eta))<0.95 )*( 150<=energy )*( 0.0482712 )+ \
-    ( 0.95<=abs(tanh(eta)) && abs(tanh(eta))<0.98 )*( energy<30 )*( 0.57449 )+ \
-    ( 0.95<=abs(tanh(eta)) && abs(tanh(eta))<0.98 )*( 30<=energy && energy<60 )*( 0.449595 )+ \
-    ( 0.95<=abs(tanh(eta)) && abs(tanh(eta))<0.98 )*( 60<=energy && energy<100 )*( 0.284322 )+ \
-    ( 0.95<=abs(tanh(eta)) && abs(tanh(eta))<0.98 )*( 100<=energy && energy<150 )*( 0.208733 )+ \
-    ( 0.95<=abs(tanh(eta)) && abs(tanh(eta))<0.98 )*( 150<=energy )*( 0.139291 )+ \
-    ( 0.98<=abs(tanh(eta)) && abs(tanh(eta))<0.995 )*( energy<30 )*( 0.657538 )+ \
-    ( 0.98<=abs(tanh(eta)) && abs(tanh(eta))<0.995 )*( 30<=energy && energy<60 )*( 0.543106 )+ \
-    ( 0.98<=abs(tanh(eta)) && abs(tanh(eta))<0.995 )*( 60<=energy && energy<100 )*( 0.458906 )+ \
-    ( 0.98<=abs(tanh(eta)) && abs(tanh(eta))<0.995 )*( 100<=energy && energy<150 )*( 0.399575 )+ \
-    ( 0.98<=abs(tanh(eta)) && abs(tanh(eta))<0.995 )*( 150<=energy )*( 0.392917 )+ \
-    ( 0.995<=abs(tanh(eta)) )*( energy<30 )*( 0.769392 )+ \
-    ( 0.995<=abs(tanh(eta)) )*( 30<=energy && energy<60 )*( 0.699301 )+ \
-    ( 0.995<=abs(tanh(eta)) )*( 60<=energy && energy<100 )*( 0.641574 )+ \
-    ( 0.995<=abs(tanh(eta)) )*( 100<=energy && energy<150 )*( 0.657384 )+ \
-    ( 0.995<=abs(tanh(eta)) )*( 150<=energy )*( 0.592252 )
+    ( abs(eta)<0.867 )*( energy<30 )*( 0.619 )+ 
+    ( abs(eta)<0.867 )*( 30<=energy && energy<60 )*( 0.639 )+ 
+    ( abs(eta)<0.867 )*( 60<=energy && energy<100 )*( 0.648 )+ 
+    ( abs(eta)<0.867 )*( 100<=energy && energy<150 )*( 0.659 )+ 
+    ( abs(eta)<0.867 )*( 150<=energy )*( 0.67 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( energy<30 )*( 0.563 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( 30<=energy && energy<60 )*( 0.603 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( 60<=energy && energy<100 )*( 0.632 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( 100<=energy && energy<150 )*( 0.656 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( 150<=energy )*( 0.67 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( energy<30 )*( 0.5 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( 30<=energy && energy<60 )*( 0.548 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( 60<=energy && energy<100 )*( 0.602 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( 100<=energy && energy<150 )*( 0.642 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( 150<=energy )*( 0.672 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( energy<30 )*( 0.447 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( 30<=energy && energy<60 )*( 0.459 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( 60<=energy && energy<100 )*( 0.506 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( 100<=energy && energy<150 )*( 0.571 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( 150<=energy )*( 0.616 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( energy<30 )*( 0.391 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( 30<=energy && energy<60 )*( 0.326 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( 60<=energy && energy<100 )*( 0.328 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( 100<=energy && energy<150 )*( 0.338 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( 150<=energy )*( 0.396 )+ 
+    ( 2.99<=abs(eta) )*( energy<30 )*( 0.376 )+ 
+    ( 2.99<=abs(eta) )*( 30<=energy && energy<60 )*( 0.294 )+ 
+    ( 2.99<=abs(eta) )*( 60<=energy && energy<100 )*( 0.271 )+ 
+    ( 2.99<=abs(eta) )*( 100<=energy && energy<150 )*( 0.227 )+ 
+    ( 2.99<=abs(eta) )*( 150<=energy )*( 0.257 )
+    ### average efficiency: 0.504
   }
   
   # b-tagging efficiency
-  add EfficiencyFormula {5} {0.8}
-
+  add EfficiencyFormula {5} {
+    ( abs(eta)<0.867 )*( energy<30 )*( 0.908 )+ 
+    ( abs(eta)<0.867 )*( 30<=energy && energy<60 )*( 0.948 )+ 
+    ( abs(eta)<0.867 )*( 60<=energy && energy<100 )*( 0.971 )+ 
+    ( abs(eta)<0.867 )*( 100<=energy && energy<150 )*( 0.982 )+ 
+    ( abs(eta)<0.867 )*( 150<=energy )*( 0.988 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( energy<30 )*( 0.85 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( 30<=energy && energy<60 )*( 0.927 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( 60<=energy && energy<100 )*( 0.96 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( 100<=energy && energy<150 )*( 0.978 )+ 
+    ( 0.867<=abs(eta) && abs(eta)<1.47 )*( 150<=energy )*( 0.982 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( energy<30 )*( 0.79 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( 30<=energy && energy<60 )*( 0.88 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( 60<=energy && energy<100 )*( 0.935 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( 100<=energy && energy<150 )*( 0.963 )+ 
+    ( 1.47<=abs(eta) && abs(eta)<1.83 )*( 150<=energy )*( 0.979 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( energy<30 )*( 0.708 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( 30<=energy && energy<60 )*( 0.802 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( 60<=energy && energy<100 )*( 0.882 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( 100<=energy && energy<150 )*( 0.927 )+ 
+    ( 1.83<=abs(eta) && abs(eta)<2.3 )*( 150<=energy )*( 0.944 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( energy<30 )*( 0.59 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( 30<=energy && energy<60 )*( 0.639 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( 60<=energy && energy<100 )*( 0.668 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( 100<=energy && energy<150 )*( 0.721 )+ 
+    ( 2.3<=abs(eta) && abs(eta)<2.99 )*( 150<=energy )*( 0.756 )+ 
+    ( 2.99<=abs(eta) )*( energy<30 )*( 0.411 )+ 
+    ( 2.99<=abs(eta) )*( 30<=energy && energy<60 )*( 0.477 )+ 
+    ( 2.99<=abs(eta) )*( 60<=energy && energy<100 )*( 0.472 )+ 
+    ( 2.99<=abs(eta) )*( 100<=energy && energy<150 )*( 0.5 )+ 
+    ( 2.99<=abs(eta) )*( 150<=energy )*( 0.488 )
+    ### average efficiency: 0.801
+  }
