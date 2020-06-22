@@ -1,14 +1,13 @@
+# ILDDelphes/cards
+### Delphes cards for ILD detector model
 
-## ILDDelphes/cards
+More information on the implementation can be found in 
+[doc/](https://github.com/ILDAnaSoft/ILDDelphes/tree/master/doc)
 
-Main catalog for Delphes cards
+&nbsp;  
 
-## Work in progress...
+*Following model versions are currently available:*
 
-Significant changes of the model are still expected. For tests only...
-
-
-### Available models
-
-cards/new: new generic detector model for ILC studies
+**`new/`** 
+ most recent version (under development)
 
