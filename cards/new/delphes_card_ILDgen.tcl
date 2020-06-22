@@ -71,6 +71,46 @@ set ExecutionPath {
   TauTagging
     
 
+  JetFinder_N2
+  JetFlavor_N2
+  BTagging80_N2
+  BTagging70_N2
+  BTagging50_N2
+  TauTagging_N2
+    
+
+  JetFinder_N3
+  JetFlavor_N3
+  BTagging80_N3
+  BTagging70_N3
+  BTagging50_N3
+  TauTagging_N3
+    
+
+  JetFinder_N4
+  JetFlavor_N4
+  BTagging80_N4
+  BTagging70_N4
+  BTagging50_N4
+  TauTagging_N4
+    
+
+  JetFinder_N5
+  JetFlavor_N5
+  BTagging80_N5
+  BTagging70_N5
+  BTagging50_N5
+  TauTagging_N5
+    
+
+  JetFinder_N6
+  JetFlavor_N6
+  BTagging80_N6
+  BTagging70_N6
+  BTagging50_N6
+  TauTagging_N6
+    
+
   MissingET
   GenMissingET
   ScalarHT
@@ -708,6 +748,31 @@ module TauTagging TauTagging {
 }
 
 
+##############################################
+# Jet finder for inclusive clustering, N=2...6
+##############################################
+
+source ILDgen/ILDgen_JetFinder_N.tcl
+
+##########################################################
+# Jet Flavor Association for inclusive clustering, N=2...6
+##########################################################
+
+source ILDgen/ILDgen_JetFlavourAssoc_N.tcl
+
+#############################################
+# b-tagging for inclusive clustering, N=2...6
+#############################################
+
+source ILDgen/ILDgen_BTagging_N.tcl
+
+###############################################
+# tau-tagging for inclusive clustering, N=2...6
+###############################################
+
+source ILDgen/ILDgen_TauTagging_N.tcl
+
+
 ####################################
 # Photon efficiency central detector
 ####################################
@@ -826,6 +891,12 @@ module TreeWriter TreeWriter {
   add Branch EFlowFilter/photons Photon Photon
   
   add Branch JetFinder/jets Jet Jet
+  
+  add Branch JetFinder_N2/jets Jet_N2 Jet
+  add Branch JetFinder_N3/jets Jet_N3 Jet
+  add Branch JetFinder_N4/jets Jet_N4 Jet
+  add Branch JetFinder_N5/jets Jet_N5 Jet
+  add Branch JetFinder_N6/jets Jet_N6 Jet
 
   add Branch EFlowFilter_MainCal/photons Photon_MainCal Photon
   add Branch JetFinder_MainCal/jets Jet_MainCal Jet
