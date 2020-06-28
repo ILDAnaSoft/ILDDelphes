@@ -9,7 +9,7 @@ module FastJetFinder JetFinder_N2 {
     set NJets 2
     set ExclusiveClustering true
 
-    set ParameterR 1.0
+    set ParameterR 2.0
     set Beta 1.0
     set Gamma 0.0
     set JetPTMin 0.0
@@ -25,7 +25,7 @@ module FastJetFinder JetFinder_N3 {
     set NJets 3
     set ExclusiveClustering true
 
-    set ParameterR 1.0
+    set ParameterR 2.0
     set Beta 1.0
     set Gamma 0.0
     set JetPTMin 0.0
@@ -41,7 +41,7 @@ module FastJetFinder JetFinder_N4 {
     set NJets 4
     set ExclusiveClustering true
 
-    set ParameterR 1.0
+    set ParameterR 2.0
     set Beta 1.0
     set Gamma 0.0
     set JetPTMin 0.0
@@ -57,7 +57,7 @@ module FastJetFinder JetFinder_N5 {
     set NJets 5
     set ExclusiveClustering true
 
-    set ParameterR 1.0
+    set ParameterR 2.0
     set Beta 1.0
     set Gamma 0.0
     set JetPTMin 0.0
@@ -73,7 +73,7 @@ module FastJetFinder JetFinder_N6 {
     set NJets 6
     set ExclusiveClustering true
 
-    set ParameterR 1.0
+    set ParameterR 2.0
     set Beta 1.0
     set Gamma 0.0
     set JetPTMin 0.0

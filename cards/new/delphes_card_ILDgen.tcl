@@ -684,18 +684,9 @@ module PdgCodeFilter NeutrinoFilter {
 #####################
 module FastJetFinder GenJetFinder {
   set InputArray NeutrinoFilter/filteredParticles
-
   set OutputArray jets
 
-# VLC plugin used with ~Durham settings (beta=1,gamma=0) 
-    
-  set JetAlgorithm 9
-  set ExclusiveClustering false
-  set ParameterR 1.0
-  set Beta 1.0
-  set Gamma 0.0
-  set JetPTMin 0.0
-
+  source ILDgen/ILDgen_GenJetFinder.tcl
 }
 
 #########################
