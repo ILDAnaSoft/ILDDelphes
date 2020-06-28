@@ -149,6 +149,9 @@ set ExecutionPath {
   BTagging80_MainCal
   BTagging70_MainCal
   BTagging50_MainCal
+  CTagging55_MainCal
+  CTagging30_MainCal
+  CTagging20_MainCal
   TauTagging_MainCal
 
   MissingET_MainCal
@@ -885,6 +888,28 @@ module BTagging BTagging50_MainCal {
     set BitNumber 2
 
     source ILDgen/ILDgen_BTagging_50.tcl
+}
+
+############################
+# c-tagging for central jets
+############################
+module BTagging CTagging55_MainCal {
+    set JetInputArray JetFinder_MainCal/jets
+    set BitNumber 4
+
+    source ILDgen/ILDgen_CTagging_55.tcl
+}
+module BTagging CTagging30_MainCal {
+    set JetInputArray JetFinder_MainCal/jets
+    set BitNumber 5
+
+    source ILDgen/ILDgen_CTagging_30.tcl
+}
+module BTagging CTagging20_MainCal {
+    set JetInputArray JetFinder_MainCal/jets
+    set BitNumber 6
+
+    source ILDgen/ILDgen_CTagging_20.tcl
 }
 
 ##########################
