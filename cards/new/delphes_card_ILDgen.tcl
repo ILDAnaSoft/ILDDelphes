@@ -68,14 +68,20 @@ set ExecutionPath {
   BTagging80
   BTagging70
   BTagging50
+  CTagging55
+  CTagging30
+  CTagging20
   TauTagging
-    
 
+  
   JetFinder_N2
   JetFlavor_N2
   BTagging80_N2
   BTagging70_N2
   BTagging50_N2
+  CTagging55_N2
+  CTagging30_N2
+  CTagging20_N2
   TauTagging_N2
     
 
@@ -84,6 +90,9 @@ set ExecutionPath {
   BTagging80_N3
   BTagging70_N3
   BTagging50_N3
+  CTagging55_N3
+  CTagging30_N3
+  CTagging20_N3
   TauTagging_N3
     
 
@@ -92,6 +101,9 @@ set ExecutionPath {
   BTagging80_N4
   BTagging70_N4
   BTagging50_N4
+  CTagging55_N4
+  CTagging30_N4
+  CTagging20_N4
   TauTagging_N4
     
 
@@ -100,6 +112,9 @@ set ExecutionPath {
   BTagging80_N5
   BTagging70_N5
   BTagging50_N5
+  CTagging55_N5
+  CTagging30_N5
+  CTagging20_N5
   TauTagging_N5
     
 
@@ -108,6 +123,9 @@ set ExecutionPath {
   BTagging80_N6
   BTagging70_N6
   BTagging50_N6
+  CTagging55_N6
+  CTagging30_N6
+  CTagging20_N6
   TauTagging_N6
     
 
@@ -736,6 +754,28 @@ module BTagging BTagging50 {
     source ILDgen/ILDgen_BTagging_50.tcl
 }
 
+###########
+# c-tagging
+###########
+module BTagging CTagging55 {
+    set JetInputArray JetFinder/jets
+    set BitNumber 4
+
+    source ILDgen/ILDgen_CTagging_55.tcl
+}
+module BTagging CTagging30 {
+    set JetInputArray JetFinder/jets
+    set BitNumber 5
+
+    source ILDgen/ILDgen_CTagging_30.tcl
+}
+module BTagging CTagging20 {
+    set JetInputArray JetFinder/jets
+    set BitNumber 6
+
+    source ILDgen/ILDgen_CTagging_20.tcl
+}
+
 #############
 # tau-tagging
 #############
@@ -765,6 +805,12 @@ source ILDgen/ILDgen_JetFlavourAssoc_N.tcl
 #############################################
 
 source ILDgen/ILDgen_BTagging_N.tcl
+
+#############################################
+# c-tagging for inclusive clustering, N=2...6
+#############################################
+
+source ILDgen/ILDgen_CTagging_N.tcl
 
 ###############################################
 # tau-tagging for inclusive clustering, N=2...6
