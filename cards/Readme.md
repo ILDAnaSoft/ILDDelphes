@@ -1,5 +1,5 @@
 # ILDDelphes/cards
-### Delphes cards for ILD detector model
+### Delphes cards for generic ILC detector model
 
 More information on the implementation can be found in 
 [doc/](https://github.com/ILDAnaSoft/ILDDelphes/tree/master/doc)

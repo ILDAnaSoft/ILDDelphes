@@ -1,8 +1,8 @@
 # ILDDelphes
-### ILD detector model for Delphes  
+### Generic ILC detector model for Delphes  
 
 
-New version of the ILD detector model is aviable for test. 
+New version of the ILC detector model is aviable for test. 
 The main structure should is not expected to change. 
 However, minor changes and improvements are still expected 
 depending also on test results.
@@ -16,12 +16,16 @@ and detector resolution, and provides also expected results of event
 reconstruction (as lepton identification, flavour taging and jet 
 clustering). 
 
-ILD detector description which is currently distributed as a part of 
+ILD detector model which is currently distributed as a part of 
 the Delphes framework is extremply simplified and outdated - 
 **it should not be used!**
 As a part of the [2021 Snowmass](https://snowmass21.org/start) study 
-the new model has been developed, based on the detailed ILD detector 
-simulation results presented in [ILD IDR](https://arxiv.org/abs/2003.01116).
+the new model has been developed for fast ILC detector simulation in Delphes. 
+While it has been mainly based on the ILD detector concept, 
+as presented in [ILD IDR](https://arxiv.org/abs/2003.01116),
+it can be considered a generic ILC detector model, as expected performances
+of both ILD and SiD are very similar and details of the detector design
+are not taken into account in Delphes.
  
 More information on the implementation can be found in 
 [doc/](https://github.com/ILDAnaSoft/ILDDelphes/tree/master/doc)
