@@ -173,7 +173,7 @@ module ParticlePropagator ParticlePropagator {
     set ElectronOutputArray electrons
     set MuonOutputArray muons
     
-    source ILDgen/ILDgen_Propagator.tcl
+    source ILCgen/ILCgen_Propagator.tcl
     
 }
 
@@ -185,7 +185,7 @@ module Efficiency ChargedHadronTrackingEfficiency {
     set OutputArray chargedHadrons
 
 
-    source ILDgen/ILDgen_ChrgHadTrackingEff.tcl 
+    source ILCgen/ILCgen_ChrgHadTrackingEff.tcl 
 }
 ##############################
 # Electron tracking efficiency
@@ -194,7 +194,7 @@ module Efficiency ElectronTrackingEfficiency {
     set InputArray ParticlePropagator/electrons
     set OutputArray electrons
 
-    source ILDgen/ILDgen_ElectronTrackingEff.tcl 
+    source ILCgen/ILCgen_ElectronTrackingEff.tcl 
 }
 ##########################
 # Muon tracking efficiency
@@ -203,7 +203,7 @@ module Efficiency MuonTrackingEfficiency {
     set InputArray ParticlePropagator/muons
     set OutputArray muons
 
-    source ILDgen/ILDgen_MuonTrackingEff.tcl 
+    source ILCgen/ILCgen_MuonTrackingEff.tcl 
 }
 ########################################
 # Momentum resolution for charged tracks
@@ -212,7 +212,7 @@ module MomentumSmearing ChargedHadronMomentumSmearing {
   set InputArray ChargedHadronTrackingEfficiency/chargedHadrons
   set OutputArray chargedHadrons
 
-    source ILDgen/ILDgen_ChrgHadMomentumSmearing.tcl
+    source ILCgen/ILCgen_ChrgHadMomentumSmearing.tcl
 
 }
 
@@ -223,7 +223,7 @@ module MomentumSmearing ElectronMomentumSmearing {
     set InputArray ElectronTrackingEfficiency/electrons
     set OutputArray electrons
 
-    source ILDgen/ILDgen_ElectronMomentumSmearing.tcl 
+    source ILCgen/ILCgen_ElectronMomentumSmearing.tcl 
 }
 ###############################
 # Momentum resolution for muons
@@ -232,7 +232,7 @@ module MomentumSmearing MuonMomentumSmearing {
     set InputArray MuonTrackingEfficiency/muons
     set OutputArray muons
 
-    source ILDgen/ILDgen_MuonMomentumSmearing.tcl 
+    source ILCgen/ILCgen_MuonMomentumSmearing.tcl 
 }
 
 ##############
@@ -265,9 +265,9 @@ module SimpleCalorimeter ECal {
     
     set SmearTowerCenter true
     
-    source ILDgen/ILDgen_ECAL_Binning.tcl
-    source ILDgen/ILDgen_ECAL_EnergyFractions.tcl
-    source ILDgen/ILDgen_ECAL_Resolution.tcl 
+    source ILCgen/ILCgen_ECAL_Binning.tcl
+    source ILCgen/ILCgen_ECAL_EnergyFractions.tcl
+    source ILCgen/ILCgen_ECAL_Resolution.tcl 
 }
 
 ##############
@@ -289,9 +289,9 @@ module SimpleCalorimeter LumiCalF {
     
     set SmearTowerCenter true
     
-    source ILDgen/ILDgen_LumiCalF_Binning.tcl
-    source ILDgen/ILDgen_ECAL_EnergyFractions.tcl
-    source ILDgen/ILDgen_ECAL_Resolution.tcl
+    source ILCgen/ILCgen_LumiCalF_Binning.tcl
+    source ILCgen/ILCgen_ECAL_EnergyFractions.tcl
+    source ILCgen/ILCgen_ECAL_Resolution.tcl
 }
 
 module SimpleCalorimeter LumiCalR {
@@ -310,9 +310,9 @@ module SimpleCalorimeter LumiCalR {
     
     set SmearTowerCenter true
     
-    source ILDgen/ILDgen_LumiCalR_Binning.tcl
-    source ILDgen/ILDgen_ECAL_EnergyFractions.tcl
-    source ILDgen/ILDgen_ECAL_Resolution.tcl
+    source ILCgen/ILCgen_LumiCalR_Binning.tcl
+    source ILCgen/ILCgen_ECAL_EnergyFractions.tcl
+    source ILCgen/ILCgen_ECAL_Resolution.tcl
 }
 
 #############
@@ -333,9 +333,9 @@ module SimpleCalorimeter HCal {
     
     set SmearTowerCenter true
     
-    source ILDgen/ILDgen_HCAL_Binning.tcl
-    source ILDgen/ILDgen_HCAL_EnergyFractions.tcl
-    source ILDgen/ILDgen_HCAL_Resolution.tcl 
+    source ILCgen/ILCgen_HCAL_Binning.tcl
+    source ILCgen/ILCgen_HCAL_EnergyFractions.tcl
+    source ILCgen/ILCgen_HCAL_Resolution.tcl 
 }
 
 ##############
@@ -356,9 +356,9 @@ module SimpleCalorimeter LHCalR {
     
     set SmearTowerCenter true
     
-    source ILDgen/ILDgen_LHCalR_Binning.tcl
-    source ILDgen/ILDgen_HCAL_EnergyFractions.tcl
-    source ILDgen/ILDgen_HCAL_Resolution.tcl
+    source ILCgen/ILCgen_LHCalR_Binning.tcl
+    source ILCgen/ILCgen_HCAL_EnergyFractions.tcl
+    source ILCgen/ILCgen_HCAL_Resolution.tcl
 }
 
 module SimpleCalorimeter LHCalF {
@@ -376,9 +376,9 @@ module SimpleCalorimeter LHCalF {
     
     set SmearTowerCenter true
     
-    source ILDgen/ILDgen_LHCalF_Binning.tcl
-    source ILDgen/ILDgen_HCAL_EnergyFractions.tcl
-    source ILDgen/ILDgen_HCAL_Resolution.tcl
+    source ILCgen/ILCgen_LHCalF_Binning.tcl
+    source ILCgen/ILCgen_HCAL_EnergyFractions.tcl
+    source ILCgen/ILCgen_HCAL_Resolution.tcl
 }
 
 ##############
@@ -398,9 +398,9 @@ module SimpleCalorimeter BeamCalR {
     
     set SmearTowerCenter true
     
-    source ILDgen/ILDgen_BeamCalR_Binning.tcl
-    source ILDgen/ILDgen_BeamCal_EnergyFractions.tcl
-    source ILDgen/ILDgen_BeamCal_Resolution.tcl
+    source ILCgen/ILCgen_BeamCalR_Binning.tcl
+    source ILCgen/ILCgen_BeamCal_EnergyFractions.tcl
+    source ILCgen/ILCgen_BeamCal_Resolution.tcl
 }
 
 module SimpleCalorimeter BeamCalF {
@@ -418,9 +418,9 @@ module SimpleCalorimeter BeamCalF {
     
     set SmearTowerCenter true
     
-    source ILDgen/ILDgen_BeamCalF_Binning.tcl
-    source ILDgen/ILDgen_BeamCal_EnergyFractions.tcl
-    source ILDgen/ILDgen_BeamCal_Resolution.tcl
+    source ILCgen/ILCgen_BeamCalF_Binning.tcl
+    source ILCgen/ILCgen_BeamCal_EnergyFractions.tcl
+    source ILCgen/ILCgen_BeamCal_Resolution.tcl
 }
 
 #################
@@ -561,7 +561,7 @@ module Efficiency BCalEfficiency {
     set InputArray  BCalMerger/bcalPhotons
     set OutputArray bcalPhotons
 
-    source ILDgen/ILDgen_BeamCalEfficiency.tcl
+    source ILCgen/ILCgen_BeamCalEfficiency.tcl
 }
 
 ###################
@@ -571,7 +571,7 @@ module Efficiency PhotonEfficiency {
     set InputArray PhotonMerger/eflowPhotons
     set OutputArray photons
 
-    source ILDgen/ILDgen_PhotonEfficiency.tcl
+    source ILCgen/ILCgen_PhotonEfficiency.tcl
 }
 
 ##################
@@ -582,7 +582,7 @@ module Isolation PhotonIsolation {
     set IsolationInputArray EFlowMerger/eflow
     set OutputArray photons
 
-    source ILDgen/ILDgen_PhotonIsolation.tcl
+    source ILCgen/ILCgen_PhotonIsolation.tcl
 }
 
 #####################
@@ -592,7 +592,7 @@ module Efficiency ElectronEfficiency {
     set InputArray ElectronFilter/electrons
     set OutputArray electrons
 
-    source ILDgen/ILDgen_ElectronEfficiency.tcl
+    source ILCgen/ILCgen_ElectronEfficiency.tcl
 }
 
 ####################
@@ -603,7 +603,7 @@ module Isolation ElectronIsolation {
     set IsolationInputArray EFlowMerger/eflow
     set OutputArray electrons
     
-    source ILDgen/ILDgen_ElectronIsolation.tcl
+    source ILCgen/ILCgen_ElectronIsolation.tcl
 }
 
 #################
@@ -613,7 +613,7 @@ module Efficiency MuonEfficiency {
     set InputArray MuonMomentumSmearing/muons
     set OutputArray muons
 
-    source ILDgen/ILDgen_MuonEfficiency.tcl
+    source ILCgen/ILCgen_MuonEfficiency.tcl
 }
 
 ################
@@ -624,7 +624,7 @@ module Isolation MuonIsolation {
     set IsolationInputArray EFlowMerger/eflow
     set OutputArray muons
     
-    source ILDgen/ILDgen_MuonIsolation.tcl
+    source ILCgen/ILCgen_MuonIsolation.tcl
 }
 
 ##################################
@@ -689,7 +689,7 @@ module FastJetFinder GenJetFinder {
   set InputArray NeutrinoFilter/filteredParticles
   set OutputArray jets
 
-  source ILDgen/ILDgen_GenJetFinder.tcl
+  source ILCgen/ILCgen_GenJetFinder.tcl
 }
 
 #########################
@@ -710,7 +710,7 @@ module FastJetFinder JetFinder {
     set InputArray EFlowFilter/eflow
     set OutputArray jets
     
-    source ILDgen/ILDgen_JetFinder.tcl
+    source ILCgen/ILCgen_JetFinder.tcl
 }
 
 ########################
@@ -723,7 +723,7 @@ module JetFlavorAssociation JetFlavorAssociation {
     set ParticleLHEFInputArray Delphes/allParticlesLHEF
     set JetInputArray JetFinder/jets
 
-    source ILDgen/ILDgen_JetFlavourAssoc.tcl
+    source ILCgen/ILCgen_JetFlavourAssoc.tcl
 }
 
 ###########
@@ -733,19 +733,19 @@ module BTagging BTagging80 {
     set JetInputArray JetFinder/jets
     set BitNumber 0
 
-    source ILDgen/ILDgen_BTagging_80.tcl
+    source ILCgen/ILCgen_BTagging_80.tcl
 }
 module BTagging BTagging70 {
     set JetInputArray JetFinder/jets
     set BitNumber 1
 
-    source ILDgen/ILDgen_BTagging_70.tcl
+    source ILCgen/ILCgen_BTagging_70.tcl
 }
 module BTagging BTagging50 {
     set JetInputArray JetFinder/jets
     set BitNumber 2
 
-    source ILDgen/ILDgen_BTagging_50.tcl
+    source ILCgen/ILCgen_BTagging_50.tcl
 }
 
 ###########
@@ -755,19 +755,19 @@ module BTagging CTagging55 {
     set JetInputArray JetFinder/jets
     set BitNumber 4
 
-    source ILDgen/ILDgen_CTagging_55.tcl
+    source ILCgen/ILCgen_CTagging_55.tcl
 }
 module BTagging CTagging30 {
     set JetInputArray JetFinder/jets
     set BitNumber 5
 
-    source ILDgen/ILDgen_CTagging_30.tcl
+    source ILCgen/ILCgen_CTagging_30.tcl
 }
 module BTagging CTagging20 {
     set JetInputArray JetFinder/jets
     set BitNumber 6
 
-    source ILDgen/ILDgen_CTagging_20.tcl
+    source ILCgen/ILCgen_CTagging_20.tcl
 }
 
 #############
@@ -778,7 +778,7 @@ module TauTagging TauTagging {
     set PartonInputArray Delphes/partons
     set JetInputArray JetFinder/jets
 
-    source ILDgen/ILDgen_TauTagging.tcl
+    source ILCgen/ILCgen_TauTagging.tcl
 }
 
 
@@ -786,31 +786,31 @@ module TauTagging TauTagging {
 # Jet finder for inclusive clustering, N=2...6
 ##############################################
 
-source ILDgen/ILDgen_JetFinder_N.tcl
+source ILCgen/ILCgen_JetFinder_N.tcl
 
 ##########################################################
 # Jet Flavor Association for inclusive clustering, N=2...6
 ##########################################################
 
-source ILDgen/ILDgen_JetFlavourAssoc_N.tcl
+source ILCgen/ILCgen_JetFlavourAssoc_N.tcl
 
 #############################################
 # b-tagging for inclusive clustering, N=2...6
 #############################################
 
-source ILDgen/ILDgen_BTagging_N.tcl
+source ILCgen/ILCgen_BTagging_N.tcl
 
 #############################################
 # c-tagging for inclusive clustering, N=2...6
 #############################################
 
-source ILDgen/ILDgen_CTagging_N.tcl
+source ILCgen/ILCgen_CTagging_N.tcl
 
 ###############################################
 # tau-tagging for inclusive clustering, N=2...6
 ###############################################
 
-source ILDgen/ILDgen_TauTagging_N.tcl
+source ILCgen/ILCgen_TauTagging_N.tcl
 
 
 ####################################
@@ -820,7 +820,7 @@ module Efficiency PhotonEfficiency_MainCal {
     set InputArray ECal/eflowPhotons
     set OutputArray photons
 
-    source ILDgen/ILDgen_PhotonEfficiency.tcl
+    source ILCgen/ILCgen_PhotonEfficiency.tcl
 }
 
 ####################################
@@ -831,7 +831,7 @@ module Isolation PhotonIsolation_MainCal {
     set IsolationInputArray EFlowMerger_MainCal/eflow
     set OutputArray photons
 
-    source ILDgen/ILDgen_PhotonIsolation.tcl
+    source ILCgen/ILCgen_PhotonIsolation.tcl
 }
 
 ######################################
@@ -852,7 +852,7 @@ module FastJetFinder JetFinder_MainCal {
     set InputArray EFlowFilter_MainCal/eflow
     set OutputArray jets
     
-    source ILDgen/ILDgen_JetFinder.tcl
+    source ILCgen/ILCgen_JetFinder.tcl
 }
 
 #########################################
@@ -865,7 +865,7 @@ module JetFlavorAssociation JetFlavorAssociation_MainCal {
     set ParticleLHEFInputArray Delphes/allParticlesLHEF
     set JetInputArray JetFinder_MainCal/jets
 
-    source ILDgen/ILDgen_JetFlavourAssoc.tcl
+    source ILCgen/ILCgen_JetFlavourAssoc.tcl
 }
 
 ############################
@@ -875,19 +875,19 @@ module BTagging BTagging80_MainCal {
     set JetInputArray JetFinder_MainCal/jets
     set BitNumber 0
 
-    source ILDgen/ILDgen_BTagging_80.tcl
+    source ILCgen/ILCgen_BTagging_80.tcl
 }
 module BTagging BTagging70_MainCal {
     set JetInputArray JetFinder_MainCal/jets
     set BitNumber 1
 
-    source ILDgen/ILDgen_BTagging_70.tcl
+    source ILCgen/ILCgen_BTagging_70.tcl
 }
 module BTagging BTagging50_MainCal {
     set JetInputArray JetFinder_MainCal/jets
     set BitNumber 2
 
-    source ILDgen/ILDgen_BTagging_50.tcl
+    source ILCgen/ILCgen_BTagging_50.tcl
 }
 
 ############################
@@ -897,19 +897,19 @@ module BTagging CTagging55_MainCal {
     set JetInputArray JetFinder_MainCal/jets
     set BitNumber 4
 
-    source ILDgen/ILDgen_CTagging_55.tcl
+    source ILCgen/ILCgen_CTagging_55.tcl
 }
 module BTagging CTagging30_MainCal {
     set JetInputArray JetFinder_MainCal/jets
     set BitNumber 5
 
-    source ILDgen/ILDgen_CTagging_30.tcl
+    source ILCgen/ILCgen_CTagging_30.tcl
 }
 module BTagging CTagging20_MainCal {
     set JetInputArray JetFinder_MainCal/jets
     set BitNumber 6
 
-    source ILDgen/ILDgen_CTagging_20.tcl
+    source ILCgen/ILCgen_CTagging_20.tcl
 }
 
 ##########################
@@ -920,7 +920,7 @@ module TauTagging TauTagging_MainCal {
     set PartonInputArray Delphes/partons
     set JetInputArray JetFinder_MainCal/jets
 
-    source ILDgen/ILDgen_TauTagging.tcl
+    source ILCgen/ILCgen_TauTagging.tcl
 }
 
 
