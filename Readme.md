@@ -16,9 +16,6 @@ and detector resolution, and provides also expected results of event
 reconstruction (as lepton identification, flavour taging and jet 
 clustering). 
 
-ILD detector model which is currently distributed as a part of 
-the Delphes framework is extremply simplified and outdated - 
-**it should not be used!**
 As a part of the [2021 Snowmass](https://snowmass21.org/start) study 
 the new model has been developed for fast ILC detector simulation in Delphes. 
 While it has been mainly based on the ILD detector concept, 
@@ -38,10 +35,10 @@ No dedicated installation of the model is required. You just need to:
 [cards/](https://github.com/ILDAnaSoft/ILDDelphes/tree/master/cards) 
 ([cards/new/](https://github.com/ILDAnaSoft/ILDDelphes/tree/master/cards/new)
  for the most recent version).
- 2. Download the main model file (`delphes_card_ILDgen.tcl`) 
-and the include file catalog (`ILDgen/`) into `cards/` catalog 
+ 2. Download the main model file (`delphes_card_ILCgen.tcl`) 
+and the include file catalog (`ILCgen/`) into `cards/` catalog 
 of your Delphes installation.
- 3. Run Delphes specifying `delphes_card_ILDgen.tcl` as the detector model.
+ 3. Run Delphes specifying `delphes_card_ILCgen.tcl` as the detector model.
 
 ### How to run it
 
