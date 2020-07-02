@@ -1,4 +1,4 @@
-# ILDDelphes/doc
+# ILCDelphes/doc
 ### Documentation for generic ILC detector model implementation
 
 Here we provide provide additional details on the model implementation,

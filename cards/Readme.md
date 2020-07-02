@@ -1,4 +1,4 @@
-# ILDDelphes/cards
+# ILCDelphes/cards
 ### Delphes cards for generic ILC detector model
 
 More information on the implementation can be found in 

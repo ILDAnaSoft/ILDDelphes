@@ -1,4 +1,4 @@
-# ILDDelphes
+# ILCDelphes
 ### Generic ILC detector model for Delphes  
 
 
