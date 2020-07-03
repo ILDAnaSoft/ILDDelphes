@@ -29,7 +29,7 @@ set ExecutionPath {
   LHCalF
   LHCalR
     
-  Calorimeters
+  Calorimeter
 
   
   
@@ -135,7 +135,7 @@ set ExecutionPath {
 
 
     
-  MainCalorimeters
+  MainCalorimeter
 
   EFlowMerger_MainCal
 
@@ -456,7 +456,7 @@ module PdgCodeFilter ChargedHadronFilter {
 # Tower Merger (in case not using e-flow algorithm)
 ###################################################
 
-module Merger Calorimeters {
+module Merger Calorimeter {
 # add InputArray InputArray
   add InputArray ECal/ecalTowers
   add InputArray HCal/hcalTowers
@@ -471,7 +471,7 @@ module Merger Calorimeters {
 # Tower Merger for central calorimeters only
 ############################################
 
-module Merger MainCalorimeters {
+module Merger MainCalorimeter {
 # add InputArray InputArray
   add InputArray ECal/ecalTowers 
   add InputArray HCal/hcalTowers
@@ -938,8 +938,8 @@ module TreeWriter TreeWriter {
   add Branch GenMissingET/momentum GenMissingET MissingET
 
   add Branch TrackMerger/tracks Track Track
-  add Branch Calorimeters/towers Tower Tower
-  add Branch MainCalorimeters/towers Tower_MainCal Tower
+  add Branch Calorimeter/towers Tower Tower
+  add Branch MainCalorimeter/towers Tower_MainCal Tower
 
   add Branch HCal/eflowTracks EFlowTrack Track
   add Branch ECal/eflowPhotons EFlowPhoton_MainCal Tower
