@@ -4,4 +4,4 @@
 
   set ParameterR 1.0
 
-  set JetPTMin 0.0
+  set JetPTMin 5.0
