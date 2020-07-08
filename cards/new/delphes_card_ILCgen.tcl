@@ -187,6 +187,7 @@ module Efficiency ChargedHadronTrackingEfficiency {
 
     source ILCgen/ILCgen_ChrgHadTrackingEff.tcl 
 }
+
 ##############################
 # Electron tracking efficiency
 ##############################
@@ -196,6 +197,7 @@ module Efficiency ElectronTrackingEfficiency {
 
     source ILCgen/ILCgen_ElectronTrackingEff.tcl 
 }
+
 ##########################
 # Muon tracking efficiency
 ##########################
@@ -205,6 +207,7 @@ module Efficiency MuonTrackingEfficiency {
 
     source ILCgen/ILCgen_MuonTrackingEff.tcl 
 }
+
 ########################################
 # Momentum resolution for charged tracks
 ########################################
@@ -225,6 +228,7 @@ module MomentumSmearing ElectronMomentumSmearing {
 
     source ILCgen/ILCgen_ElectronMomentumSmearing.tcl 
 }
+
 ###############################
 # Momentum resolution for muons
 ###############################
@@ -426,7 +430,6 @@ module SimpleCalorimeter BeamCalF {
 #################
 # Electron filter
 #################
-
 module PdgCodeFilter ElectronFilter {
   set InputArray HCal/eflowTracks
   set OutputArray electrons
@@ -439,7 +442,6 @@ module PdgCodeFilter ElectronFilter {
 ######################
 # ChargedHadronFilter
 ######################
-
 module PdgCodeFilter ChargedHadronFilter {
   set InputArray HCal/eflowTracks
   set OutputArray chargedHadrons
@@ -450,12 +452,9 @@ module PdgCodeFilter ChargedHadronFilter {
   add PdgCode {-13}
 }
 
-
-
 ###################################################
 # Tower Merger (in case not using e-flow algorithm)
 ###################################################
-
 module Merger Calorimeter {
 # add InputArray InputArray
   add InputArray ECal/ecalTowers
@@ -470,7 +469,6 @@ module Merger Calorimeter {
 ############################################
 # Tower Merger for central calorimeters only
 ############################################
-
 module Merger MainCalorimeter {
 # add InputArray InputArray
   add InputArray ECal/ecalTowers 
@@ -478,11 +476,9 @@ module Merger MainCalorimeter {
   set OutputArray towers
 }
 
-
 ####################
 # Energy flow merger
 ####################
-
 module Merger EFlowMerger {
 # add InputArray InputArray
   add InputArray HCal/eflowTracks
@@ -498,7 +494,6 @@ module Merger EFlowMerger {
 ##################################################
 # Energy flow merger for central calorimeters only
 ##################################################
-
 module Merger EFlowMerger_MainCal {
 # add InputArray InputArray
   add InputArray HCal/eflowTracks
@@ -510,7 +505,6 @@ module Merger EFlowMerger_MainCal {
 ###############
 # Photon merger
 ###############
-
 module Merger PhotonMerger {
 # add InputArray InputArray
   add InputArray ECal/eflowPhotons
@@ -523,7 +517,6 @@ module Merger PhotonMerger {
 #######################
 # Neutral hadron merger
 #######################
-
 module Merger NeutralMerger {
 # add InputArray InputArray
   add InputArray HCal/eflowNeutralHadrons
@@ -535,7 +528,6 @@ module Merger NeutralMerger {
 ###############################
 # BeamCal tower merger
 ###############################
-
 module Merger BCalTowers {
 # add InputArray InputArray
   add InputArray BeamCalF/bcalTowers
@@ -546,7 +538,6 @@ module Merger BCalTowers {
 ###############################
 # BeamCal energy flow merger
 ###############################
-
 module Merger BCalMerger {
 # add InputArray InputArray
   add InputArray BeamCalF/bcalPhotons
@@ -644,11 +635,11 @@ module Merger MissingET {
   add InputArray EFlowMerger/eflow
   set MomentumOutputArray momentum
 }
+
 module Merger MissingET_MainCal {
   add InputArray EFlowMerger_MainCal/eflow
   set MomentumOutputArray momentum
 }
-
 
 ##################
 # Scalar HT merger
@@ -657,6 +648,7 @@ module Merger ScalarHT {
   add InputArray EFlowMerger/eflow
   set EnergyOutputArray energy
 }
+
 module Merger ScalarHT_MainCal {
   add InputArray EFlowMerger_MainCal/eflow
   set EnergyOutputArray energy
@@ -681,7 +673,6 @@ module PdgCodeFilter NeutrinoFilter {
 
 }
 
-
 #####################
 # MC truth jet finder
 #####################
@@ -700,7 +691,6 @@ module Merger GenMissingET {
   add InputArray NeutrinoFilter/filteredParticles
   set MomentumOutputArray momentum
 }
-
 
 ############
 # Jet finder
@@ -735,12 +725,14 @@ module BTagging BTagging80 {
 
     source ILCgen/ILCgen_BTagging_80.tcl
 }
+
 module BTagging BTagging70 {
     set JetInputArray JetFinder/jets
     set BitNumber 1
 
     source ILCgen/ILCgen_BTagging_70.tcl
 }
+
 module BTagging BTagging50 {
     set JetInputArray JetFinder/jets
     set BitNumber 2
@@ -757,12 +749,14 @@ module BTagging CTagging55 {
 
     source ILCgen/ILCgen_CTagging_55.tcl
 }
+
 module BTagging CTagging30 {
     set JetInputArray JetFinder/jets
     set BitNumber 5
 
     source ILCgen/ILCgen_CTagging_30.tcl
 }
+
 module BTagging CTagging20 {
     set JetInputArray JetFinder/jets
     set BitNumber 6
@@ -781,37 +775,30 @@ module TauTagging TauTagging {
     source ILCgen/ILCgen_TauTagging.tcl
 }
 
-
 ##############################################
 # Jet finder for inclusive clustering, N=2...6
 ##############################################
-
 source ILCgen/ILCgen_JetFinder_N.tcl
 
 ##########################################################
 # Jet Flavor Association for inclusive clustering, N=2...6
 ##########################################################
-
 source ILCgen/ILCgen_JetFlavourAssoc_N.tcl
 
 #############################################
 # b-tagging for inclusive clustering, N=2...6
 #############################################
-
 source ILCgen/ILCgen_BTagging_N.tcl
 
 #############################################
 # c-tagging for inclusive clustering, N=2...6
 #############################################
-
 source ILCgen/ILCgen_CTagging_N.tcl
 
 ###############################################
 # tau-tagging for inclusive clustering, N=2...6
 ###############################################
-
 source ILCgen/ILCgen_TauTagging_N.tcl
-
 
 ####################################
 # Photon efficiency central detector
@@ -877,12 +864,14 @@ module BTagging BTagging80_MainCal {
 
     source ILCgen/ILCgen_BTagging_80.tcl
 }
+
 module BTagging BTagging70_MainCal {
     set JetInputArray JetFinder_MainCal/jets
     set BitNumber 1
 
     source ILCgen/ILCgen_BTagging_70.tcl
 }
+
 module BTagging BTagging50_MainCal {
     set JetInputArray JetFinder_MainCal/jets
     set BitNumber 2
@@ -899,12 +888,14 @@ module BTagging CTagging55_MainCal {
 
     source ILCgen/ILCgen_CTagging_55.tcl
 }
+
 module BTagging CTagging30_MainCal {
     set JetInputArray JetFinder_MainCal/jets
     set BitNumber 5
 
     source ILCgen/ILCgen_CTagging_30.tcl
 }
+
 module BTagging CTagging20_MainCal {
     set JetInputArray JetFinder_MainCal/jets
     set BitNumber 6
@@ -923,13 +914,9 @@ module TauTagging TauTagging_MainCal {
     source ILCgen/ILCgen_TauTagging.tcl
 }
 
-
-
-
 ##################
 # ROOT tree writer
 ##################
-
 module TreeWriter TreeWriter {
 # add Branch InputArray BranchName BranchClass
   add Branch Delphes/allParticles Particle GenParticle
