@@ -40,7 +40,7 @@ set ExecutionPath {
   BCalMerger
   BCalEfficiency
    
-    
+  HCalMerger  
   ElectronFilter
   ChargedHadronFilter
 
@@ -264,7 +264,7 @@ module SimpleCalorimeter ECal {
     
     set IsEcal true
     
-    set EnergyMin 0.5
+    set EnergyMin 0.2
     set EnergySignificanceMin 1.0
     
     set SmearTowerCenter true
@@ -288,7 +288,7 @@ module SimpleCalorimeter LumiCalF {
     
     set IsEcal true 
     
-    set EnergyMin 1.0
+    set EnergyMin 2.0
     set EnergySignificanceMin 1.0
     
     set SmearTowerCenter true
@@ -309,7 +309,7 @@ module SimpleCalorimeter LumiCalR {
     
     set IsEcal true 
     
-    set EnergyMin 1.0
+    set EnergyMin 2.0
     set EnergySignificanceMin 1.0
     
     set SmearTowerCenter true
@@ -332,7 +332,7 @@ module SimpleCalorimeter HCal {
 
     set IsEcal false
     
-    set EnergyMin 1.0
+    set EnergyMin 0.5
     set EnergySignificanceMin 1.0
     
     set SmearTowerCenter true
@@ -355,7 +355,7 @@ module SimpleCalorimeter LHCalR {
     
     set IsEcal false 
     
-    set EnergyMin 1.0
+    set EnergyMin 2.0
     set EnergySignificanceMin 1.0
     
     set SmearTowerCenter true
@@ -375,7 +375,7 @@ module SimpleCalorimeter LHCalF {
     
     set IsEcal false 
     
-    set EnergyMin 1.0
+    set EnergyMin 2.0
     set EnergySignificanceMin 1.0
     
     set SmearTowerCenter true
@@ -397,7 +397,7 @@ module SimpleCalorimeter BeamCalR {
     
     set IsEcal true 
     
-    set EnergyMin 2.0
+    set EnergyMin 5.0
     set EnergySignificanceMin 1.0
     
     set SmearTowerCenter true
@@ -416,7 +416,7 @@ module SimpleCalorimeter BeamCalF {
     
     set IsEcal true 
     
-    set EnergyMin 2.0
+    set EnergyMin 5.0
 
     set EnergySignificanceMin 1.0
     
@@ -428,28 +428,26 @@ module SimpleCalorimeter BeamCalF {
 }
 
 #################
+# Electron merger
+#################
+module Merger HCalMerger {
+# add InputArray InputArray
+  add InputArray HCal/eflowTracks
+  add InputArray LHCalF/eflowTracks
+  add InputArray LHCalR/eflowTracks
+  set OutputArray eflowTracks
+}
+
+#################
 # Electron filter
 #################
 module PdgCodeFilter ElectronFilter {
-  set InputArray HCal/eflowTracks
+  set InputArray  HCalMerger/eflowTracks
   set OutputArray electrons
   set Invert true
 
   add PdgCode {11}
   add PdgCode {-11}
-}
-
-######################
-# ChargedHadronFilter
-######################
-module PdgCodeFilter ChargedHadronFilter {
-  set InputArray HCal/eflowTracks
-  set OutputArray chargedHadrons
-  
-  add PdgCode {11}
-  add PdgCode {-11}
-  add PdgCode {13}
-  add PdgCode {-13}
 }
 
 ###################################################
@@ -481,7 +479,7 @@ module Merger MainCalorimeter {
 ####################
 module Merger EFlowMerger {
 # add InputArray InputArray
-  add InputArray HCal/eflowTracks
+  add InputArray HCalMerger/eflowTracks
   add InputArray ECal/eflowPhotons
   add InputArray LumiCalF/eflowPhotons
   add InputArray LumiCalR/eflowPhotons
@@ -928,7 +926,7 @@ module TreeWriter TreeWriter {
   add Branch Calorimeter/towers Tower Tower
   add Branch MainCalorimeter/towers Tower_MainCal Tower
 
-  add Branch HCal/eflowTracks EFlowTrack Track
+  add Branch HCalMerger/eflowTracks EFlowTrack Track
   add Branch ECal/eflowPhotons EFlowPhoton_MainCal Tower
   add Branch HCal/eflowNeutralHadrons EFlowNeutralHadron_MainCal Tower
   
