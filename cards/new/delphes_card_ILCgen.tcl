@@ -42,7 +42,6 @@ set ExecutionPath {
    
   HCalMerger  
   ElectronFilter
-  ChargedHadronFilter
 
     
   EFlowMerger
