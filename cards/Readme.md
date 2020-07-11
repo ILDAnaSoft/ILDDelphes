@@ -1,6 +1,10 @@
 # ILCDelphes/cards
 ### Delphes cards for generic ILC detector model
 
+To use this model for fast ILC detector response simulation with Delphes,
+copy the main model file (`delphes_card_ILCgen.tcl`) and the include 
+file catalog (`ILCgen/`) into `cards/` catalog of your local Delphes installation.
+
 More information on the implementation can be found in 
 [doc/](https://github.com/ILDAnaSoft/ILDDelphes/tree/master/doc)
 
