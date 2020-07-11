@@ -31,11 +31,9 @@ More information on the implementation can be found in
 
 No dedicated installation of the model is required. You just need to:
 
- 1. Select model version (subcatalog) from 
-[cards/](https://github.com/ILDAnaSoft/ILDDelphes/tree/master/cards) 
-([cards/new/](https://github.com/ILDAnaSoft/ILDDelphes/tree/master/cards/new)
- for the most recent version).
- 2. Download the main model file (`delphes_card_ILCgen.tcl`) 
+ 1. Download the model repository, model files can be found in
+ [cards/](https://github.com/ILDAnaSoft/ILDDelphes/tree/master/cards).
+ 2. Copy the main model file (`delphes_card_ILCgen.tcl`) 
 and the include file catalog (`ILCgen/`) into `cards/` catalog 
 of your Delphes installation.
  3. Run Delphes specifying `delphes_card_ILCgen.tcl` as the detector model.
