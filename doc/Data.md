@@ -45,7 +45,8 @@ Electrons entering calorimeters at smaller angles are reconstructed as photons.
 
 We recommen using "exclusive" jet clustering results (clustering into the fixed
 number of jets). **Durham algorithm** is used, as the standard choice for 
-exclusive clustering in ILC studies.[^1] 
+exclusive clustering in ILC studies (as it is not directly implemented in Delphes,
+we use VLC algoritm with settings exactly reproducing Durham algorithm results).
 As different studies consider different jet multiplicities, 
 ILCDelphes model contains clustering results for N=2,...,6. Results are stored 
 in five separate jet collections, **Jet_N2**, ... , **Jet_N6**. 
@@ -53,10 +54,8 @@ The users should pick the one most suitable for their analysis.
 In most cases, N should correspond to the number of partons expected 
 in the tree level final state. 
 
-[^1]: As it is not directly implemented in Delphes, we use VLC algoritm with settings reproducing Durham algorithm results. 
-
 For special cases, inclusive jet clustering is also available (**Jet** collection),
-run with anti-kt algorithm with R=1 and p<sub>T</sub><sup>min</sup>= 5 GeV. 
+run with **anti-kt** algorithm with R=1 and p<sub>T</sub><sup>min</sup>= 5 GeV. 
 
 For details of the jet clustering algorithms, please refer to 
 [FastJet](http://fastjet.fr/) documentation.
@@ -89,7 +88,6 @@ reproduced. Only one tag level should be used in the analysis to avoid possible 
 Otherwise, full simulation results should be used to study influence of flavour
 tagging correlations.
 
-Results of the tau-tagging for reconstructed jets are stored in **TauTag** word of Jet class.
-Only one working point is implemented, with efficiency reaching 80% for high energy 
-tau-initiated jets.
-
+Results of the tau-tagging for reconstructed jets are stored in **TauTag** word 
+of Jet class. Only one working point is implemented (bit 0), with efficiency 
+reaching 80% for high energy tau-initiated jets.
