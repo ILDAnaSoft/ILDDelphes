@@ -14,5 +14,5 @@ More information on the implementation can be found in
 
 | Date | Release | Comments |
 | ---- | ------- | -------- |
-| 2020.07.11 | [v01-00](https://github.com/iLCSoft/ILCDelphes/releases/tag/v01-00) | First public release of the model |
+| 2020.07.13 | [v01-00](https://github.com/iLCSoft/ILCDelphes/releases/tag/v01-00) | First public release of the model |
 

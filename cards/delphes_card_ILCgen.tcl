@@ -916,22 +916,38 @@ module TauTagging TauTagging_MainCal {
 ##################
 module TreeWriter TreeWriter {
 # add Branch InputArray BranchName BranchClass
+
+#
+# Generator level 
+#
   add Branch Delphes/allParticles Particle GenParticle
-  
   add Branch GenJetFinder/jets GenJet Jet
   add Branch GenMissingET/momentum GenMissingET MissingET
 
-  add Branch TrackMerger/tracks Track Track
-  add Branch Calorimeter/towers Tower Tower
-  add Branch MainCalorimeter/towers Tower_MainCal Tower
+#
+# Raw detector respons
+#  
+
+#  add Branch TrackMerger/tracks Track Track
+#  add Branch Calorimeter/towers Tower Tower
+#  add Branch MainCalorimeter/towers Tower_MainCal Tower
+#
+#  add Branch BCalTowers/bcalTowers BCalTower Tower
+
+#
+# Particle flow objects 
+#
 
   add Branch HCalMerger/eflowTracks EFlowTrack Track
-  add Branch ECal/eflowPhotons EFlowPhoton_MainCal Tower
-  add Branch HCal/eflowNeutralHadrons EFlowNeutralHadron_MainCal Tower
-  
   add Branch PhotonMerger/eflowPhotons EFlowPhoton Tower
   add Branch NeutralMerger/eflowNeutralHadrons EFlowNeutralHadron Tower
 
+  add Branch ECal/eflowPhotons EFlowPhoton_MainCal Tower
+  add Branch HCal/eflowNeutralHadrons EFlowNeutralHadron_MainCal Tower
+
+#
+# Final state reconstruction
+#  
   add Branch EFlowFilter/electrons Electron Electron
   add Branch EFlowFilter/muons Muon Muon
   add Branch EFlowFilter/photons Photon Photon
@@ -952,7 +968,8 @@ module TreeWriter TreeWriter {
   add Branch MissingET_MainCal/momentum MissingET_MainCal MissingET
   add Branch ScalarHT_MainCal/energy ScalarHT_MainCal ScalarHT
 
-  add Branch BCalTowers/bcalTowers BCalTower Tower
+# BeamCal photons - not included in particle flow/clustering
+  
   add Branch BCalEfficiency/bcalPhotons BCalPhoton Photon
 
 }
