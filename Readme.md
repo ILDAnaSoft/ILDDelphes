@@ -22,14 +22,16 @@ as presented in [ILD IDR](https://arxiv.org/abs/2003.01116),
 it can be considered a generic ILC detector model, as expected performances
 of both ILD and SiD are very similar and details of the detector design
 are not taken into account in Delphes.
- 
-More information on the implementation can be found in [doc/](doc/)
+
+### Documentation 
+
+More information on the implementation can be found in [**doc/**](doc/)
 
 ### Installation
 
 No dedicated installation of the model is required. You just need to:
 
- 1. Download the model repository, model files can be found in [cards/](cards/).
+ 1. Download the model repository, model files can be found in [**cards/**](cards/).
  2. Copy the main model file (`delphes_card_ILCgen.tcl`) 
 and the include file catalog (`ILCgen/`) into `cards/` catalog 
 of your Delphes installation.

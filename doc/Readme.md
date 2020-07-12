@@ -13,6 +13,6 @@ the analysis.
 
 For more information:
 
-- [**presentation**](delphes_snowmass_20200707.pdf)  prepared for the 
+- [**presentation**](files/delphes_snowmass_20200707.pdf)  prepared for the 
    "Open questions and News Ideas" Snowmass 2020 Energy Frontier
    session, July 7, 2020.
