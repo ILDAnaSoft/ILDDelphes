@@ -1,4 +1,4 @@
-#######################################
+################################################
 #
 # ILCgen model
 #
@@ -11,11 +11,14 @@
 # and SiD are very similar and details of the
 # detector design are not taken into account.
 #
-# For more details see and references:
+# For more details and references see:
 #   https://github.com/iLCSoft/ILCDelphes
 #
-# Aleksander Filip Zarnecki, zarnecki@fuw.edu.pl
+# Questions and comments can be send to:
+# Aleksander Filip Zarnecki <zarnecki@fuw.edu.pl>
 #
+################################################
+
 #######################################
 # Order of execution of various modules
 #######################################
