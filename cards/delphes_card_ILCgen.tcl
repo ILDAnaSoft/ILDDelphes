@@ -1,4 +1,21 @@
-
+#######################################
+#
+# ILCgen model
+#
+# Generic ILC detector model for Delphes,
+# developed for the Snowmass 2021 study.
+# While it has been mainly based on the ILD
+# detector concept, as presented in ILD IDR,
+# it can be considered a generic ILC detector
+# model, as expected performances of both ILD
+# and SiD are very similar and details of the
+# detector design are not taken into account.
+#
+# For more details see and references:
+#   https://github.com/iLCSoft/ILCDelphes
+#
+# Aleksander Filip Zarnecki, zarnecki@fuw.edu.pl
+#
 #######################################
 # Order of execution of various modules
 #######################################
@@ -925,26 +942,34 @@ module TreeWriter TreeWriter {
   add Branch GenMissingET/momentum GenMissingET MissingET
 
 #
-# Raw detector respons
-#  
-
+# Raw detector response
+#     uncomment for tests or for Dephes event display 
+#
 #  add Branch TrackMerger/tracks Track Track
 #  add Branch Calorimeter/towers Tower Tower
-#  add Branch MainCalorimeter/towers Tower_MainCal Tower
+
 #
+# Additional raw data collections
+#     for tests only
+#
+#  add Branch MainCalorimeter/towers Tower_MainCal Tower
 #  add Branch BCalTowers/bcalTowers BCalTower Tower
 
 #
 # Particle flow objects 
 #
-
   add Branch HCalMerger/eflowTracks EFlowTrack Track
   add Branch PhotonMerger/eflowPhotons EFlowPhoton Tower
   add Branch NeutralMerger/eflowNeutralHadrons EFlowNeutralHadron Tower
 
-  add Branch ECal/eflowPhotons EFlowPhoton_MainCal Tower
-  add Branch HCal/eflowNeutralHadrons EFlowNeutralHadron_MainCal Tower
-
+#
+# Particle flow objects for main calorimeters only,
+# exclusing LumiCal and LHCal - for tests only 
+#
+#  add Branch ECal/eflowPhotons EFlowPhoton_MainCal Tower
+#  add Branch HCal/eflowNeutralHadrons EFlowNeutralHadron_MainCal Tower
+#
+  
 #
 # Final state reconstruction
 #  
@@ -960,15 +985,29 @@ module TreeWriter TreeWriter {
   add Branch JetFinder_N5/jets Jet_N5 Jet
   add Branch JetFinder_N6/jets Jet_N6 Jet
 
-  add Branch EFlowFilter_MainCal/photons Photon_MainCal Photon
-  add Branch JetFinder_MainCal/jets Jet_MainCal Jet
-  
+#
+# Final state reconstruction with no LumiCal/LHCal
+#   for special cases only, not in the default output stream  
+#  
+#  add Branch EFlowFilter_MainCal/photons Photon_MainCal Photon
+#  add Branch JetFinder_MainCal/jets Jet_MainCal Jet
+
+#
+# Missing transverse momentum and transverse energy
+# (vector and scalar sum of particle flow object momenta)
+#  
   add Branch MissingET/momentum MissingET MissingET
   add Branch ScalarHT/energy ScalarHT ScalarHT
-  add Branch MissingET_MainCal/momentum MissingET_MainCal MissingET
-  add Branch ScalarHT_MainCal/energy ScalarHT_MainCal ScalarHT
+
+#  
+# Missing transverse momentum and transverse energy
+#  without LumiCal and LHCal objects - for special cases only
+#
+#  add Branch MissingET_MainCal/momentum MissingET_MainCal MissingET
+#  add Branch ScalarHT_MainCal/energy ScalarHT_MainCal ScalarHT
 
 # BeamCal photons - not included in particle flow/clustering
+#  nor in the transverse momentym/energy calculation
   
   add Branch BCalEfficiency/bcalPhotons BCalPhoton Photon
 
